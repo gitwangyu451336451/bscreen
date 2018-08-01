@@ -1,5 +1,7 @@
 <template>
-  <div class="contain_left">2</div>
+  <div class="contain_left">
+    <img src="static/stageData/ct.png">
+  </div>
 </template>
 
 <script>
@@ -19,6 +21,13 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .contain_left
+  position: relative
   height: 100%
-  background: GhostWhite
+  >img
+    position: absolute
+    top: 50%
+    left: 50%
+    height: 90%
+    width: 100%
+    transform: translate(-50%, -50%)
 </style>

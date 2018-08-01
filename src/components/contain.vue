@@ -4,10 +4,10 @@
         <Col span="7" style="height: 100%;">
             <containLeft></containLeft>
         </Col>
-        <Col span="10" style="height: 100%;">
+        <Col span="11" style="height: 100%;">
              <containCenter></containCenter>
         </Col>
-        <Col span="7" style="height: 100%;">
+        <Col span="6" style="height: 100%;">
             <containRight></containRight>
         </Col>
       </Row>
@@ -34,7 +34,7 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .contain
-    height: 7.5rem
+    height: calc(100% - 2.17rem)
     width: 100%
-    background: red
+    padding: .25rem .35rem
 </style>

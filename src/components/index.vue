@@ -1,6 +1,6 @@
 <template>
 <div class="contents">
-	<!-- <img src="static/stageData/yxxt_bgtp.png"> -->
+	<!-- <img src="static/stageData/bg.png"> -->
 	<top></top>
 	<contain></contain>
 	<bottom></bottom>
@@ -29,11 +29,10 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .contents
-	// position: fixed
-	// font-size: 16px
-	// top: 0
-	// bottom: 0
-	// width: 100%
+	height: 100%
+	min-width: 1024px
+	min-height: 645px
+	background: url('/bscreen/static/stageData/bg.png')
 	>img
 		position: absolute
 		display: block

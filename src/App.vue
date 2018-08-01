@@ -14,6 +14,11 @@ export default {
 
 <style>
 #app {
+  position: fixed;
+  top: 0;
+	bottom: 0;
+  width: 100%;
+  overflow-x: scroll;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
