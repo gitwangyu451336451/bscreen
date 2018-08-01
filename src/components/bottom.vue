@@ -1,17 +1,18 @@
 <template>
-	<div class="wel_comes_threr">
-		<div class="wel_bom_one">
-				<p>学生统计</p>
-		</div>
-		<div style="height:10%"></div>
-		<div class="wel_comes_four">
-			<a value="1"><img src="static/stageData/yxxt_zhd.png"></a>
-			<div>
-			<div class="comes_four_get" style="float: left;height: 100%;">
-			</div>
-			</div>
-			<a value="1"><img src="static/stageData/yxxt_yhd.png"></a>
-		</div>
+	<div class="bottom">
+    <div id="demo">
+      <div id="indemo">
+        <div id="demo1">
+          <a href="#"><img src="/jscss/demoimg/wall_s1.jpg" border="0" /></a>
+          <a href="#"><img src="/jscss/demoimg/wall_s2.jpg" border="0" /></a>
+          <a href="#"><img src="/jscss/demoimg/wall_s3.jpg" border="0" /></a>
+          <a href="#"><img src="/jscss/demoimg/wall_s4.jpg" border="0" /></a>
+          <a href="#"><img src="/jscss/demoimg/wall_s5.jpg" border="0" /></a>
+          <a href="#"><img src="/jscss/demoimg/wall_s6.jpg" border="0" /></a>
+        </div>
+        <div id="demo2"></div>
+      </div>
+    </div>
 	</div>
 </template>
 
@@ -21,69 +22,49 @@ export default {
     return {
     }
   },
+  created () {
+    this.$nextTick(() => {
+      let speed = 100
+      let tab = document.getElementById('demo')
+      let tab1 = document.getElementById('demo1')
+      let tab2 = document.getElementById('demo2')
+      tab2.innerHTML = tab1.innerHTML
+      function Marquee () {
+        if (tab2.offsetWidth - tab.scrollLeft <= 0) {
+          tab.scrollLeft -= tab1.offsetWidth
+        } else {
+          tab.scrollLeft++
+        }
+      }
+      let MyMar = setInterval(Marquee, speed)
+      tab.onmouseover = function () {
+        clearInterval(MyMar)
+      }
+      tab.onmouseout = function () {
+        MyMar = setInterval(Marquee, speed)
+      }
+    })
+  },
   components: {
   }
 }
 </script>
 
 <style scoped lang="stylus">
-.wel_comes_threr
-    height: 23.5%
-    .wel_bom_one
-        width: 100%
-        height: 15%
-        >p
-            margin: 0px
-            color: #fff
-            float: left
-            margin-left: 6%
-            height: 100%
-            font-size: 20px
-            width: calc(100% - 6%)
-            text-align: left
-    .wel_comes_four
-        height: 55%
-        margin-left: 2.625em
-        margin-right: 2.625em
-        width:auto
-        .wel_comes_four a img
-            height: 100%
-        .wel_comes_four>div
-            margin: 0px
-        .wel_comes_four>div>div>div:nth-child(1)
-            float: left
-            width: 21%
-            height: 100%
-        .wel_comes_four>div>div>div:nth-child(2)
-            float: left
-            width: 26.5%
-            height: 100%
-        .wel_comes_four>div>div>div:nth-child(3)
-            float: left
-            width: 28.3%
-            height: 100%
-        .wel_comes_four>div>div>div:nth-child(4)
-            float: left
-            width: 23.2%
-            height: 100%
-        .wel_comes_four>div
-            float: left
-            height: 100%
-            width: calc(100% - 3% - 5.1em)
-            overflow: hidden
-        .wel_comes_four>div>div>div
-            white-space: nowrap
-            display:inline
-        .wel_comes_four a:first-child
-            float: left
-            padding-left: 2.5em
-            height: 100%
-            cursor: pointer
-            width: 1.5%
-        .wel_comes_four a:last-child
-            float: right
-            padding-right: 2.5em
-            height: 100%
-            cursor: pointer
-            width: 1.5%
+.bottom
+  height: 2.55rem
+#demo
+  background: #FFF
+  overflow:hidden
+  border: 1px dashed #CCC
+  width: 200px
+#demo img
+  border: 3px solid #F2F2F2
+#indemo
+  float: left
+  width: 800%
+#demo1
+  float: left
+#demo2
+  float: left
 </style>

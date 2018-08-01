@@ -41,8 +41,9 @@ export default {
 <style scoped lang="stylus">
 .wel_come_top
 	width: 100%
-	height: 7%
+	height: .75rem
 	color: #dedede
+	background: yellowgreen
 	.wel_come_left
 		margin-left: 42px
 		margin-top: 0.5%
