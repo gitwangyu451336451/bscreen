@@ -14,7 +14,7 @@ getpath()
 Vue.use(iView)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
-
+Vue.prototype.$echarts = echarts
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
