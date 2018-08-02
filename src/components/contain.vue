@@ -34,7 +34,8 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .contain
-    height: calc(100% - 2.17rem)
+    // height: calc(100% - 2.17rem)
+    height: 5.54rem
     width: 100%
     padding: .25rem .35rem
 </style>

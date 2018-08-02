@@ -5,17 +5,55 @@
       招生类别统计
     </div>
     <div class="cl-objs">
-      <div class="cl-obj"></div>
-      <div class="cl-obj"></div>
-      <div class="cl-obj"></div>
-      <div class="cl-obj"></div>
+      <div class="cl-obj">
+        <Row style="height: 100%;">
+          <Col :span="14" style="height: 100%;">
+            <zslbMes></zslbMes>
+          </Col>
+          <Col :span="10" style="height: 100%; position: relative">
+            <zslbChart></zslbChart>
+          </Col>
+        </Row>
+      </div>
+      <div class="cl-obj">
+        <Row style="height: 100%;">
+          <Col :span="11" style="height: 100%;">
+            <zslbMes></zslbMes>
+          </Col>
+          <Col :span="13" style="height: 100%; position: relative">
+            <zslbChart></zslbChart>
+          </Col>
+        </Row>
+      </div>
+      <div class="cl-obj">
+        <Row style="height: 100%;">
+          <Col :span="10" style="height: 100%;">
+            <zslbMes></zslbMes>
+          </Col>
+          <Col :span="14" style="height: 100%; position: relative">
+            <zslbChart></zslbChart>
+          </Col>
+        </Row>
+      </div>
+      <div class="cl-obj">
+        <Row style="height: 100%;">
+          <Col :span="13" style="height: 100%;">
+            <zslbMes></zslbMes>
+          </Col>
+          <Col :span="11" style="height: 100%; position: relative">
+            <zslbChart></zslbChart>
+          </Col>
+        </Row>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import zslbMes from './utils/zslbMes'
+import zslbChart from './utils/zslbChart'
 export default {
-  components: {},
+  components: {zslbMes, zslbChart},
   props: {},
   data () {
     return {

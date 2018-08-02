@@ -5,15 +5,28 @@
       <img src="static/stageData/xy.png">
     </div>
     <img src="static/stageData/r1.png">
+    <div class="cl-progress">
+      <v-progress :data="dataProgress"></v-progress>
+    </div>
   </div>
 </template>
 
 <script>
+import progress from './utils/progress'
 export default {
-  components: {},
+  components: {'v-progress': progress},
   props: {},
   data () {
     return {
+      dataProgress: [
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'},
+        {'name': '信息工程学院'}]
     }
   },
   watch: {},
@@ -44,4 +57,6 @@ export default {
       width: .14rem
       margin-right: .24rem
       margin-left: .16rem
+  >.cl-progress
+    margin-top: .35rem
 </style>
