@@ -1,19 +1,13 @@
 <template>
- <div class="zslbChart" ref="zslbChart">
-
- </div>
+ <div class="zslbChart" ref="zslbChart"></div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
   data () {
     return {
-
-    }
-  },
-  mounted () {
-    let chart = this.$echarts.init(this.$refs.zslbChart)
-    chart.setOption({
+      chart: '',
+      option: {
       baseOption: {
         series: [{
           name: '',
@@ -74,7 +68,17 @@ export default {
           }]
         }]
       }
-    })
+    }
+    }
+  },
+  methods: {
+    reload () {
+      this.chart.setOption(this.option,true)
+    }
+  },
+  mounted () {
+    this.chart = this.$echarts.init(this.$refs.zslbChart)
+    this.chart.setOption(this.option)
   }
 }
 </script>

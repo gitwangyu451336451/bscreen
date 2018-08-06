@@ -1,6 +1,8 @@
 <template>
 	<div class="bottom">
-    <img src="static/stageData/bt.png">
+    <img class="bg" src="static/stageData/bt.png">
+    <img class="bleft" src="static/stageData/yxxt_zhd.png">
+    <img class="bright" src="static/stageData/yxxt_yhd.png">
     <Row>
       <Col span="7">
         <div class="cl-title">
@@ -12,20 +14,68 @@
     <div id="demo">
       <div id="indemo">
         <div id="demo1">
-          <a href="#"><img src="/jscss/demoimg/wall_s1.jpg" border="0" />1</a>
-          <a href="#"><img src="/jscss/demoimg/wall_s2.jpg" border="0" />2</a>
-          <a href="#"><img src="/jscss/demoimg/wall_s3.jpg" border="0" />3</a>
-          <a href="#"><img src="/jscss/demoimg/wall_s4.jpg" border="0" />4</a>
-          <a href="#"><img src="/jscss/demoimg/wall_s5.jpg" border="0" />5</a>
-          <a href="#"><img src="/jscss/demoimg/wall_s6.jpg" border="0" />6</a>
+          <a href="#" v-for="item in 10" :key="item">
+            <div>
+              <p>缴费{{item}}</p>
+              <chart></chart>
+            </div>
+            <div>
+              <div>
+                <p class="fr" style="color: #0076b1">已办理</p>
+                <p class="fr mr24" style="color: #0076b1">未办理</p>
+                <div style="clear: both"></div>
+              </div>
+              <table>
+                <tr>
+                  <th>状态</th>
+                  <th>人数</th>
+                  <th>占比</th>
+                </tr>
+                <tr v-for="item in 2" :key="item">
+                  <td>已办理</td>
+                  <td>5099</td>
+                  <td>79.30%</td>
+                </tr>
+              </table>
+            </div>
+            <div></div>
+          </a>
         </div>
-        <div id="demo2"></div>
+        <div id="demo2">
+          <a href="#" v-for="item in 10" :key="item">
+            <div>
+              <p>缴费{{item}}</p>
+              <chart></chart>
+            </div>
+            <div>
+              <div>
+                <p class="fr" style="color: #0076b1">已办理</p>
+                <p class="fr mr24" style="color: #0076b1">未办理</p>
+                <div style="clear: both"></div>
+              </div>
+              <table>
+                <tr>
+                  <th>状态</th>
+                  <th>人数</th>
+                  <th>占比</th>
+                </tr>
+                <tr v-for="item in 2" :key="item">
+                  <td>已办理{{item}}</td>
+                  <td>5099</td>
+                  <td>79.30%</td>
+                </tr>
+              </table>
+            </div>
+            <div></div>
+          </a>
+        </div>
       </div>
     </div>
 	</div>
 </template>
 
 <script type="text/ecmascript-6">
+import chart from './utils/xstjChart'
 export default {
   data () {
     return {
@@ -35,9 +85,17 @@ export default {
     this.$nextTick(() => {
       let speed = 100
       let tab = document.getElementById('demo')
+      let w = tab.clientWidth / 4
       let tab1 = document.getElementById('demo1')
+      let aObj = tab1.getElementsByTagName('a')
+      for (let i = 0; i < aObj.length; i++) {
+        aObj[i].style.width = w + 'px'
+      }
       let tab2 = document.getElementById('demo2')
-      tab2.innerHTML = tab1.innerHTML
+      let aObj2 = tab2.getElementsByTagName('a')
+      for (let i = 0; i < aObj2.length; i++) {
+        aObj2[i].style.width = w + 'px'
+      }
       function Marquee () {
         if (tab2.offsetWidth - tab.scrollLeft <= 0) {
           tab.scrollLeft -= tab1.offsetWidth
@@ -54,8 +112,7 @@ export default {
       }
     })
   },
-  components: {
-  }
+  components: {chart}
 }
 </script>
 
@@ -75,27 +132,108 @@ export default {
       width: .14rem
       margin-right: .24rem
       margin-left: .16rem
-  >img
+  >img.bg
     position: absolute
     width: 100%
     top: -.15rem
     left: 50%
     height: 100%
     transform: translateX(-50%)
+  >img.bright
+    position: absolute
+    bottom: .3rem
+    right: 0.07rem
+    transform: translateX(-50%)
+    cursor: pointer
+  >img.bleft
+    position: absolute
+    bottom: .3rem
+    left: .25rem
+    transform: translateX(-50%)
+    cursor: pointer
 #demo
   position: absolute
   top: .5rem
-  left: .6rem
+  // left: .4rem
   overflow:hidden
-  width: calc(100% - 1.2rem)
+  width: calc(100% - .8rem)
+  // width: calc(100% - .7rem)
+  // width: 100%
+  margin: 0 .4rem
   height: calc(100% - .75rem)
+  >img
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
 #demo img
   border: 3px solid #F2F2F2
 #indemo
   float: left
   width: 800%
-#demo1
+  height: 100%
+#demo1 ,#demo2
   float: left
-#demo2
-  float: left
+  height: 100%
+  // width: 12.5%
+  white-space: nowrap
+  a
+    display: inline-block
+    font-size: .12rem
+    color: white
+    // width: 25%
+    height: 100%
+    // white-space: nowrap
+    // float: left
+    >div:last-child
+      height: 100%
+      width: .2rem
+      border-left: 1px solid #143C60
+      transform: rotate(15deg)
+      float: left
+    >div:first-child
+      width: .81rem
+      height: 100%
+      float: left
+      >p
+        height: .2rem
+        line-height: .2rem
+      >div
+        height: calc(100% - .24rem)
+    >div:nth-child(2)
+      width: calc(100% - 1.01rem)
+      height: 100%
+      padding-right: 0.2rem
+      float: left
+      table
+        width: 100%
+        color: #408edb
+        margin-top: 0.05rem
+        text-align: right
+        td
+          color: white
+          height: .24rem
+          line-height: .24rem
+      >div>p
+        position: relative
+      >div>p:first-child:before
+        content: ""
+        display: block
+        position: absolute
+        width: .12rem
+        height: .12rem
+        left: -.14rem
+        top: 50%
+        transform: translateY(-50%)
+        background: #1897d6
+      >div>p:nth-child(2):before
+        content: ""
+        display: block
+        position: absolute
+        width: .12rem
+        height: .12rem
+        left: -.14rem
+        top: 50%
+        transform: translateY(-50%)
+        background: #09c4fb
 </style>
