@@ -20,7 +20,6 @@ import containLeft from './containLeft'
 import containRight from './containRight'
 export default {
   components: {containCenter, containLeft, containRight},
-  props: {},
   data () {
     return {
     }

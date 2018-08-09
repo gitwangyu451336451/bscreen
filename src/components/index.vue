@@ -1,6 +1,5 @@
 <template>
 <div class="contents">
-	<!-- <img src="static/stageData/bg.png"> -->
 	<top></top>
 	<contain></contain>
 	<bottom></bottom>
@@ -8,10 +7,12 @@
 </template>
 
 <script>
-import { getCollege } from 'api/bscreen'
 import top from './top'
 import bottom from './bottom'
 import contain from './contain'
+import * as api from 'api/bscreen'
+import { ERR_OK } from 'api/config'
+import { mapActions } from 'vuex'
 export default {
   components: {top, bottom, contain},
   props: {},
@@ -20,9 +21,32 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    ...mapActions([
+      'setCollogeData',
+      'setZslb',
+      'setXstj'
+    ]),
+    init () {
+      api.getCollege().then((res) => {
+        if (res.status === ERR_OK) {
+          this.setCollogeData(res.data)
+        }
+      })
+      api.getZslb().then((res) => {
+        if (res.status === ERR_OK) {
+          this.setZslb(res.data)
+        }
+      })
+      api.getXstj().then((res) => {
+        if (res.status === ERR_OK) {
+          this.setXstj(res.data)
+        }
+      })
+    }
+  },
   created () {
-    getCollege(1, 2, 3)
+    this.init()
   },
   mounted () {}
 }

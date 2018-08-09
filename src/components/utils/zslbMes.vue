@@ -1,12 +1,12 @@
 <template>
  <div class="zslbObj">
-     <p class="mt5 colorDefault">统招</p>
+     <p class="mt5 colorDefault">{{data.name}}</p>
      <div class="mt5 zslbObj-bl">
-         <span>2560</span><span>/3103</span>
+         <span>{{data.sd}}</span><span>/{{data.yd}}</span>
      </div>
      <div class="mt12 zslbObj-ms">
-         <span class="mr8">未到人数: 543(人)</span>
-         占比: 17.50
+         <span class="mr8">未到人数: {{data.wd}}(人)</span>
+         占比: {{data.zb}}
      </div>
  </div>
 </template>
@@ -14,13 +14,10 @@
 <script type="text/ecmascript-6">
 export default {
   data () {
-    return {
-
-    }
+    return {}
   },
-  components: {
-
-  }
+  props: ['data'],
+  components: {}
 }
 </script>
 

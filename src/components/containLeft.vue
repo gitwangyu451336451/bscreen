@@ -4,44 +4,14 @@
       <img src="static/stageData/bt_zstj.png">
       招生类别统计
     </div>
-    <div class="cl-objs">
-      <div class="cl-obj">
+    <div class="cl-objs" v-if="getZslb.length>0">
+      <div class="cl-obj" v-for="(item, i) in bl" :key="i">
         <Row style="height: 100%;">
-          <Col :span="14" style="height: 100%;">
-            <zslbMes></zslbMes>
+          <Col :span="item.s1" style="height: 100%;">
+            <zslbMes :data="getZslb[i]"></zslbMes>
           </Col>
-          <Col :span="10" style="height: 100%; position: relative">
-            <zslbChart></zslbChart>
-          </Col>
-        </Row>
-      </div>
-      <div class="cl-obj">
-        <Row style="height: 100%;">
-          <Col :span="11" style="height: 100%;">
-            <zslbMes></zslbMes>
-          </Col>
-          <Col :span="13" style="height: 100%; position: relative">
-            <zslbChart></zslbChart>
-          </Col>
-        </Row>
-      </div>
-      <div class="cl-obj">
-        <Row style="height: 100%;">
-          <Col :span="10" style="height: 100%;">
-            <zslbMes></zslbMes>
-          </Col>
-          <Col :span="14" style="height: 100%; position: relative">
-            <zslbChart></zslbChart>
-          </Col>
-        </Row>
-      </div>
-      <div class="cl-obj">
-        <Row style="height: 100%;">
-          <Col :span="13" style="height: 100%;">
-            <zslbMes></zslbMes>
-          </Col>
-          <Col :span="11" style="height: 100%; position: relative">
-            <zslbChart></zslbChart>
+          <Col :span="item.s2" style="height: 100%; position: relative">
+            <zslbChart :data="getZslb[i]"></zslbChart>
           </Col>
         </Row>
       </div>
@@ -52,15 +22,22 @@
 <script>
 import zslbMes from './utils/zslbMes'
 import zslbChart from './utils/zslbChart'
+import { mapGetters } from 'vuex'
 export default {
   components: {zslbMes, zslbChart},
   props: {},
   data () {
     return {
+      bl: [{s1: 14, s2: 10},
+        {s1: 11, s2: 13},
+        {s1: 10, s2: 14},
+        {s1: 13, s2: 11}]
     }
   },
   watch: {},
-  computed: {},
+  computed: {
+    ...mapGetters(['getZslb'])
+  },
   methods: {},
   created () {},
   mounted () {}

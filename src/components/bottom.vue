@@ -1,5 +1,5 @@
 <template>
-	<div class="bottom">
+	<div class="bottom" v-if="getXstj.length>0">
     <img class="bg" src="static/stageData/bt.png">
     <img class="bleft" src="static/stageData/yxxt_zhd.png">
     <img class="bright" src="static/stageData/yxxt_yhd.png">
@@ -14,10 +14,10 @@
     <div id="demo">
       <div id="indemo">
         <div id="demo1">
-          <a href="#" v-for="item in 10" :key="item">
+          <a href="#" v-for="(item, i) in getXstj" :key="'item'+i">
             <div>
-              <p>缴费{{item}}</p>
-              <chart></chart>
+              <p>缴费</p>
+              <chart :data="item.list"></chart>
             </div>
             <div>
               <div>
@@ -31,10 +31,15 @@
                   <th>人数</th>
                   <th>占比</th>
                 </tr>
-                <tr v-for="item in 2" :key="item">
+                <tr>
                   <td>已办理</td>
-                  <td>5099</td>
-                  <td>79.30%</td>
+                  <td>{{item.list.ybrs}}</td>
+                  <td>{{item.list.ybzb}}%</td>
+                </tr>
+                <tr>
+                  <td>未办理</td>
+                  <td>{{item.list.wbrs}}</td>
+                  <td>{{item.list.wbzb}}%</td>
                 </tr>
               </table>
             </div>
@@ -42,10 +47,10 @@
           </a>
         </div>
         <div id="demo2">
-          <a href="#" v-for="item in 10" :key="item">
+          <a href="#" v-for="(item, i) in getXstj" :key="'item1'+i">
             <div>
-              <p>缴费{{item}}</p>
-              <chart></chart>
+              <p>缴费</p>
+              <chart :data="item.list"></chart>
             </div>
             <div>
               <div>
@@ -55,14 +60,14 @@
               </div>
               <table>
                 <tr>
-                  <th>状态</th>
-                  <th>人数</th>
-                  <th>占比</th>
+                  <td>已办理</td>
+                  <td>{{item.list.ybrs}}</td>
+                  <td>{{item.list.ybzb}}%</td>
                 </tr>
-                <tr v-for="item in 2" :key="item">
-                  <td>已办理{{item}}</td>
-                  <td>5099</td>
-                  <td>79.30%</td>
+                <tr>
+                  <td>未办理</td>
+                  <td>{{item.list.wbrs}}</td>
+                  <td>{{item.list.wbzb}}%</td>
                 </tr>
               </table>
             </div>
@@ -76,164 +81,213 @@
 
 <script type="text/ecmascript-6">
 import chart from './utils/xstjChart'
+import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {
+    return {}
+  },
+  computed: {
+    ...mapGetters(['getXstj'])
+  },
+  watch: {
+    getXstj (val, old) {
+      this.$nextTick(() => {
+        let speed = 100
+        let tab = document.getElementById('demo')
+        let w = tab.clientWidth / 4
+        let tab1 = document.getElementById('demo1')
+        let aObj = tab1.getElementsByTagName('a')
+        for (let i = 0; i < aObj.length; i++) {
+          aObj[i].style.width = w + 'px'
+        }
+        let tab2 = document.getElementById('demo2')
+        let aObj2 = tab2.getElementsByTagName('a')
+        for (let i = 0; i < aObj2.length; i++) {
+          aObj2[i].style.width = w + 'px'
+        }
+        function Marquee () {
+          if (tab2.offsetWidth - tab.scrollLeft <= 0) {
+            tab.scrollLeft -= tab1.offsetWidth
+          } else {
+            tab.scrollLeft++
+          }
+        }
+        let MyMar = setInterval(Marquee, speed)
+        tab.onmouseover = function () {
+          clearInterval(MyMar)
+        }
+        tab.onmouseout = function () {
+          MyMar = setInterval(Marquee, speed)
+        }
+      })
     }
   },
-  created () {
-    this.$nextTick(() => {
-      let speed = 100
-      let tab = document.getElementById('demo')
-      let w = tab.clientWidth / 4
-      let tab1 = document.getElementById('demo1')
-      let aObj = tab1.getElementsByTagName('a')
-      for (let i = 0; i < aObj.length; i++) {
-        aObj[i].style.width = w + 'px'
-      }
-      let tab2 = document.getElementById('demo2')
-      let aObj2 = tab2.getElementsByTagName('a')
-      for (let i = 0; i < aObj2.length; i++) {
-        aObj2[i].style.width = w + 'px'
-      }
-      function Marquee () {
-        if (tab2.offsetWidth - tab.scrollLeft <= 0) {
-          tab.scrollLeft -= tab1.offsetWidth
-        } else {
-          tab.scrollLeft++
-        }
-      }
-      let MyMar = setInterval(Marquee, speed)
-      tab.onmouseover = function () {
-        clearInterval(MyMar)
-      }
-      tab.onmouseout = function () {
-        MyMar = setInterval(Marquee, speed)
-      }
-    })
-  },
-  components: {chart}
+  mounted () {},
+  components: { chart }
 }
 </script>
 
 <style scoped lang="stylus">
-.bottom
-  position: relative
-  height: 1.72rem
-  margin: 0 .35rem
-  .cl-title
-    font-size: .16rem
-    color: white
-    height: .25rem
-    line-height: .25rem
-    background: url('/bscreen/static/stageData/lefttwo.png') no-repeat
-    text-align: left
-    img
-      width: .14rem
-      margin-right: .24rem
-      margin-left: .16rem
-  >img.bg
-    position: absolute
-    width: 100%
-    top: -.15rem
-    left: 50%
-    height: 100%
-    transform: translateX(-50%)
-  >img.bright
-    position: absolute
-    bottom: .3rem
-    right: 0.07rem
-    transform: translateX(-50%)
-    cursor: pointer
-  >img.bleft
-    position: absolute
-    bottom: .3rem
-    left: .25rem
-    transform: translateX(-50%)
-    cursor: pointer
-#demo
-  position: absolute
-  top: .5rem
+.bottom {
+  position: relative;
+  height: 1.72rem;
+  margin: 0 0.35rem;
+
+  .cl-title {
+    font-size: 0.16rem;
+    color: white;
+    height: 0.25rem;
+    line-height: 0.25rem;
+    background: url('/bscreen/static/stageData/lefttwo.png') no-repeat;
+    text-align: left;
+
+    img {
+      width: 0.14rem;
+      margin-right: 0.24rem;
+      margin-left: 0.16rem;
+    }
+  }
+
+  >img.bg {
+    position: absolute;
+    width: 100%;
+    top: -0.15rem;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
+  >img.bright {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.07rem;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+
+  >img.bleft {
+    position: absolute;
+    bottom: 0.3rem;
+    left: 0.25rem;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+}
+
+#demo {
+  position: absolute;
+  top: 0.5rem;
   // left: .4rem
-  overflow:hidden
-  width: calc(100% - .8rem)
+  overflow: hidden;
+  width: calc(100% - 0.8rem);
   // width: calc(100% - .7rem)
   // width: 100%
-  margin: 0 .4rem
-  height: calc(100% - .75rem)
-  >img
-    position: absolute
-    width: 100%
-    height: 100%
-    top: 0
-#demo img
-  border: 3px solid #F2F2F2
-#indemo
-  float: left
-  width: 800%
-  height: 100%
-#demo1 ,#demo2
-  float: left
-  height: 100%
+  margin: 0 0.4rem;
+  height: calc(100% - 0.75rem);
+
+  >img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+}
+
+#demo img {
+  border: 3px solid #F2F2F2;
+}
+
+#indemo {
+  float: left;
+  width: 800%;
+  height: 100%;
+}
+
+#demo1, #demo2 {
+  float: left;
+  height: 100%;
   // width: 12.5%
-  white-space: nowrap
-  a
-    display: inline-block
-    font-size: .12rem
-    color: white
+  white-space: nowrap;
+
+  a {
+    display: inline-block;
+    font-size: 0.12rem;
+    color: white;
     // width: 25%
-    height: 100%
+    height: 100%;
+
     // white-space: nowrap
     // float: left
-    >div:last-child
-      height: 100%
-      width: .2rem
-      border-left: 1px solid #143C60
-      transform: rotate(15deg)
-      float: left
-    >div:first-child
-      width: .81rem
-      height: 100%
-      float: left
-      >p
-        height: .2rem
-        line-height: .2rem
-      >div
-        height: calc(100% - .24rem)
-    >div:nth-child(2)
-      width: calc(100% - 1.01rem)
-      height: 100%
-      padding-right: 0.2rem
-      float: left
-      table
-        width: 100%
-        color: #408edb
-        margin-top: 0.05rem
-        text-align: right
-        td
-          color: white
-          height: .24rem
-          line-height: .24rem
-      >div>p
-        position: relative
-      >div>p:first-child:before
-        content: ""
-        display: block
-        position: absolute
-        width: .12rem
-        height: .12rem
-        left: -.14rem
-        top: 50%
-        transform: translateY(-50%)
-        background: #1897d6
-      >div>p:nth-child(2):before
-        content: ""
-        display: block
-        position: absolute
-        width: .12rem
-        height: .12rem
-        left: -.14rem
-        top: 50%
-        transform: translateY(-50%)
-        background: #09c4fb
+    >div:last-child {
+      height: 100%;
+      width: 0.2rem;
+      border-left: 1px solid #143C60;
+      transform: rotate(15deg);
+      float: left;
+    }
+
+    >div:first-child {
+      width: 0.81rem;
+      height: 100%;
+      float: left;
+
+      >p {
+        height: 0.2rem;
+        line-height: 0.2rem;
+      }
+
+      >div {
+        height: calc(100% - 0.24rem);
+      }
+    }
+
+    >div:nth-child(2) {
+      width: calc(100% - 1.01rem);
+      height: 100%;
+      padding-right: 0.2rem;
+      float: left;
+
+      table {
+        width: 100%;
+        color: #408edb;
+        margin-top: 0.05rem;
+        text-align: right;
+
+        td {
+          color: white;
+          height: 0.24rem;
+          line-height: 0.24rem;
+        }
+      }
+
+      >div>p {
+        position: relative;
+      }
+
+      >div>p:first-child:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0.12rem;
+        height: 0.12rem;
+        left: -0.14rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #1897d6;
+      }
+
+      >div>p:nth-child(2):before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0.12rem;
+        height: 0.12rem;
+        left: -0.14rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #09c4fb;
+      }
+    }
+  }
+}
 </style>

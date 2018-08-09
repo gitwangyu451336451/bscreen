@@ -1,15 +1,21 @@
 <template>
-  <div class="zslbChart" ref="zslbChart"></div>
+  <div class='zslbChart' ref='zslbChart'></div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type='text/ecmascript-6'>
 export default {
+  props: ['data'],
   data () {
     return {
-      chart: '',
-      option: {
+      chart: ''
+    }
+  },
+  computed: {
+    option () {
+      let option = {
         baseOption: {
-          series: [{
+          series: [
+            {
               name: '',
               type: 'pie',
               radius: ['70%', '71%'],
@@ -33,10 +39,12 @@ export default {
                   color: '#1896d5'
                 }
               },
-              data: [{
-                value: 12345,
-                name: '84%'
-              }]
+              data: [
+                {
+                  value: 12345,
+                  name: this.data.zb
+                }
+              ]
             },
             {
               type: 'pie',
@@ -49,8 +57,9 @@ export default {
                   show: false
                 }
               },
-              data: [{
-                  value: 234,
+              data: [
+                {
+                  value: this.data.sd,
                   name: '',
                   itemStyle: {
                     normal: {
@@ -59,7 +68,7 @@ export default {
                   }
                 },
                 {
-                  value: 45,
+                  value: this.data.wd,
                   name: '',
                   itemStyle: {
                     normal: {
@@ -72,6 +81,7 @@ export default {
           ]
         }
       }
+      return option
     }
   },
   methods: {
@@ -84,15 +94,15 @@ export default {
     this.chart.setOption(this.option)
   }
 }
-
 </script>
 
-<style scoped lang="stylus">
-  .zslbChart
-    position: absolute
-    height: .8rem
-    width: 100%
-    top: 48%
-    left: 50%
-    transform: translate(-50%, -50%)
+<style scoped lang='stylus'>
+.zslbChart {
+  position: absolute
+  height: 0.8rem
+  width: 100%
+  top: 48%
+  left: 50%
+  transform: translate(-50%, -50%)
+}
 </style>

@@ -22,102 +22,7 @@ exports.server = function() {
             {"college":"财经学院","bdl":"89.47","lqrs":"1301","bdrs":"1269"}]
         res.send(d)
     })
-    app.get('/enroll_bdwc',function(req, res) {
-        let d = {
-            "wbl":"778",
-            "ybl":"5652"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_bks',function(req, res) {
-        let d = {
-            "bdrs":"3912",
-            "lqrs":"631",
-            "bdl":"82.5%"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_jf',function(req, res) {
-        let d = {
-            "wbl":"1331",
-            "ybl":"5099"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_kaist',function(req, res) {
-        let d = {
-            "bdrs":"3912",
-            "lqrs":"231",
-            "bdl":"93.98%"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_lstd',function(req, res) {
-        let d = {
-            "wbl":"4047",
-            "ybl":"2383"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_ssfp',function(req, res) {
-        let d = {
-            "wbl":"740",
-            "ybl":"5690"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_yjs',function(req, res) {
-        let d = {
-            "bdrs":"3912",
-            "lqrs":"831",
-            "bdl":"90.03%"
-        }
-        res.send(d)
-    })
-    app.get('/enroll_zsb',function(req, res) {
-        let d = {
-            "bdrs":"3912",
-            "lqrs":"931",
-            "bdl":"90.82%"
-        }
-        res.send(d)
-    })
-    app.get('/old',function(req, res) {
-        let d = {
-            "legend_data": [
-              "全校统计",
-              "专升本",
-              "本科",
-              "研究生",
-              "专科"
-            ],
-            "series_all": [
-               [{"name":"北京","value":140}, {"name":"江苏"}],
-               [{"name":"上海","value":20}, {"name":"江苏"}],
-               [{"name":"天津","value":30}, {"name":"江苏"}],
-               [{"name":"广东","value":10}, {"name":"江苏"}],
-               [{"name":"青海","value":40}, {"name":"江苏"}],
-               [{"name":"宁夏","value":20}, {"name":"江苏"}],
-               [{"name":"山西","value":20}, {"name":"江苏"}],
-               [{"name":"浙江","value":20}, {"name":"江苏"}],
-               [{"name":"台湾","value":10}, {"name":"江苏"}],
-               [{"name":"西藏","value":160}, {"name":"江苏"}],
-               [{"name":"安徽","value":20}, {"name":"江苏"}],
-               [{"name":"福建","value":20}, {"name":"江苏"}],
-               [{"name":"甘肃","value":20}, {"name":"江苏"}],
-               [{"name":"广西","value":20}, {"name":"江苏"}],
-               [{"name":"湖南","value":20}, {"name":"江苏"}],
-               [{"name":"香港","value":20}, {"name":"江苏"}],
-               [{"name":"澳门","value":20}, {"name":"江苏"}],
-               [{"name":"云南","value":20}, {"name":"江苏"}],
-               [{"name":"内蒙古","value":20}, {"name":"江苏"}],
-               [{"name":"黑龙江","value":20}, {"name":"江苏"}],
-               [{"name":"新疆","value":20}, {"name":"江苏"}]
-            ]
-          }
-        res.send(d)
-    })
-    app.get('/welcome',function(req, res) {
+    app.get('/zslb',function(req, res) {
         let d = [
             {"name":"统招","sd":"2560","yd":"3103","wd":"543","zb":"17.50"},
             {"name":"单独招生","sd":"2186","yd":"2328","wd":"140","zb":"6.02%"},
@@ -126,14 +31,7 @@ exports.server = function() {
         ]    
         res.send(d)
     })
-    app.get('/welcome2',function(req, res) {
-        let d = [
-            {"zb":"96.38%","bl_s":"12721","lqrs":"13098"},
-            {"zb":"97%","bl_s":"13098","lqrs":"14867"}
-        ]
-        res.send(d)
-    })
-    app.get('/welcome3',function(req, res) {
+    app.get('/xstj',function(req, res) {
         let d = [
             {
                 "names":"缴费","list":{

@@ -54,7 +54,7 @@ export default {
       mapName: 'china',
       geoCoordMap: {},
       name_fontFamily: '等线',
-      nameColor: 'rgb(255, 255, 255)',
+      nameColor: 'rgb(255, 255, 255)'
     }
   },
   methods: {
@@ -69,12 +69,10 @@ export default {
           })
         }
       }
-      console.log(res)
       return res
     }
   },
   mounted () {
-    console.log(this.convertData(data))
     let myChart = this.$echarts.init(document.getElementById('map'))
     // 开启加载中
     myChart.showLoading()
@@ -300,7 +298,7 @@ export default {
     bottom 7%
     width 200px
     .man-title
-      text-align right 
+      text-align right
       color rgba(27,181,255,0.95)
       font-size 15px
     .man-content

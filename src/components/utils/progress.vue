@@ -7,16 +7,16 @@
                     <tbody>
                         <tr>
                             <td class="college-td">
-                                <p class="college-name">信息工程学院</p>
+                                <p class="college-name">{{item.college}}</p>
                             </td>
                             <td class="yq-td" :class="{'yq-td-last': data.length!==(i+1)}">
                                 <div class="yq"></div>
                             </td>
                             <td class="info-td">
                                 <div class="enroll-info">
-                                    <p class="enroll-bdrs">1269/1301人</p>
-                                    <div class="enroll-zz" style="width:106.65599999999999px;"></div>
-                                    <p class="enroll-bdl">88.88%</p>
+                                    <p class="enroll-bdrs">{{item.bdrs}}/{{item.lqrs}}人</p>
+                                    <div class="enroll-zz" :style="{width: item.bdl*0.65+'%'}"></div>
+                                    <p class="enroll-bdl">{{item.bdl}}%</p>
                                 </div>
                             </td>
                         </tr>

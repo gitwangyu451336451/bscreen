@@ -1,3 +1,3 @@
-const ERR_OK = 40001
+const ERR_OK = 200
 
 export { ERR_OK }

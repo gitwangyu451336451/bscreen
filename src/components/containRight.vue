@@ -6,13 +6,14 @@
     </div>
     <img src="static/stageData/r1.png">
     <div class="cl-progress">
-      <v-progress :data="dataProgress"></v-progress>
+      <v-progress :data="getCollogeData"></v-progress>
     </div>
   </div>
 </template>
 
 <script>
 import progress from './utils/progress'
+import { mapGetters } from 'vuex'
 export default {
   components: {'v-progress': progress},
   props: {},
@@ -30,7 +31,9 @@ export default {
     }
   },
   watch: {},
-  computed: {},
+  computed: {
+    ...mapGetters(['getCollogeData'])
+  },
   methods: {},
   created () {},
   mounted () {}
