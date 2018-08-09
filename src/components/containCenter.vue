@@ -1,9 +1,44 @@
 <template>
-  <div class='contain-left' id='map'></div>
+  <div class='contain-left' >
+    <div class="top-wrapper">
+      <div class="register">
+        <div class="register-num">96.38%</div>
+        <div class="register-text">报到率</div>
+        <div class="register-bottom">
+          <p>
+            <label class="register-nums">12721</label>
+            <span class="register-personal space">报到人数</span>
+            <label class="register-nums">12721</label>
+            <span class="register-personal">录取人数</span>
+          </p>
+        </div>
+      </div>
+      <div class="enroll">
+        <div class="enroll-num">96.38%</div>
+        <div class="enroll-text">录取率</div>
+        <div class="enroll-bottom">
+          <p>
+            <label class="enroll-nums">12721</label>
+            <span class="enroll-personal space">录取人数</span>
+            <label class="enroll-nums">12721</label>
+            <span class="enroll-personal">计划人数</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id='map'></div>
+    <div class="man-fem">
+      <p class="man-title">男女比例</p>
+      <div class="man-content">
+        <div class="man">76%</div>
+        <div class="fem">24%</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { toolTipData, data } from './map.js'
+import { data } from './map.js'
 require('echarts/lib/chart/map')
 require('echarts/map/js/china')
 let maxSize4Pin = 100
@@ -61,7 +96,7 @@ export default {
         show: true,
         min: 0,
         max: 200,
-        left: 'left',
+        left: '40',
         top: 'bottom',
         text: ['高', '低'], // 文本，默认为数值文本
         calculable: true,
@@ -176,7 +211,6 @@ export default {
           },
           zlevel: 6,
           data: this.convertData(data)
-          // data: data
         }
       ]
     }
@@ -187,7 +221,101 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .contain-left
-  position: relative
-  width: 100%
-  height: 100%
+  position relative
+  width 100%
+  height 110%
+  #map
+    height 80%
+    background: url('/bscreen/static/stageData/map.png') no-repeat
+    background-size contain
+  .top-wrapper
+    height 16%
+    position relative
+    .register
+      left 0.45rem
+      top 0.06rem
+      width 370px
+      height 100%
+      text-align center
+      position absolute
+      background: url('/bscreen/static/stageData/map-left.png') no-repeat
+      background-size 100% 100%
+      background-color #041636
+      z-index 1
+      .register-num
+        color #ffffff
+        font-weight bold
+        font-size 38px
+        position relative
+        top -30px
+      .register-text
+        color #19ccff
+        font-size 28px
+        position relative
+        top -30px
+      .register-personal
+        color #327dea
+        font-size 18px
+      .register-nums
+        font-size 30px
+        color #ffffff
+      .register-bottom
+        position relative
+        top -30px
+      .space
+        margin-right 9px
+    .enroll
+      position absolute
+      right 23px
+      background: url('/bscreen/static/stageData/map-right.png') no-repeat
+      background-size 100% 100%
+      height 80%
+      padding 0 15px
+      bottom 0
+      .enroll-num
+        color #ffffff
+        font-weight bold
+        font-size 30px
+        position relative
+        top -19px
+      .enroll-text
+        color #19ccff
+        font-size 22px
+        top -19px
+        position relative
+      .enroll-personal
+        color #327dea
+        font-size 15px
+      .enroll-nums
+        font-size 19px
+        color #ffffff
+      .enroll-bottom
+        position relative
+        top -19px
+      .space
+        margin-right 9px
+  .man-fem
+    position absolute
+    right 38px
+    bottom 7%
+    width 200px
+    .man-title
+      text-align right 
+      color rgba(27,181,255,0.95)
+      font-size 15px
+    .man-content
+      background url('/bscreen/static/stageData/man-fem.png') no-repeat
+      height 77px
+      &>div
+        color #fff
+        position absolute
+        width 50%
+        height 50%
+      .fem
+        top 60px
+        line-height 30px
+        left 30px
+      .man
+        bottom 0px
+        right 0
 </style>

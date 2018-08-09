@@ -126,7 +126,7 @@ export default {
     color: white
     height: .25rem
     line-height: .25rem
-    background: #0c5789
+    background: url('/bscreen/static/stageData/lefttwo.png') no-repeat
     text-align: left
     img
       width: .14rem

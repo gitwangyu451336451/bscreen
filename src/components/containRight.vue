@@ -53,6 +53,7 @@ export default {
     line-height: .25rem
     background: #0c5789
     text-align: right
+    background: url('/bscreen/static/stageData/rightone.png') no-repeat
     img
       width: .14rem
       margin-right: .24rem
