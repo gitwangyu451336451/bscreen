@@ -10,45 +10,43 @@
 import top from './top'
 import bottom from './bottom'
 import contain from './contain'
-import * as api from 'api/bscreen'
 import { ERR_OK } from 'api/config'
 import { mapActions } from 'vuex'
+import { bscrenn } from 'api/index' // 获取大屏所有数据接口
 export default {
   components: {top, bottom, contain},
-  props: {},
-  data () {
-    return {}
-  },
-  watch: {},
-  computed: {},
   methods: {
     ...mapActions([
       'setCollogeData',
       'setZslb',
-      'setXstj'
+      'setXstj',
+      'setMaps'
     ]),
-    init () {
-      api.getCollege().then((res) => {
-        if (res.status === ERR_OK) {
-          this.setCollogeData(res.data)
-        }
-      })
-      api.getZslb().then((res) => {
-        if (res.status === ERR_OK) {
-          this.setZslb(res.data)
-        }
-      })
-      api.getXstj().then((res) => {
-        if (res.status === ERR_OK) {
-          this.setXstj(res.data)
+    // 获取初始化的数据
+    _bscrenn () {
+      bscrenn().then(res => {
+        res = res.data
+        if (res.state === ERR_OK) {
+          // 设置右边栏
+          this.setCollogeData(res.data.right)
+          // 设置左边栏
+          this.setZslb(res.data.left)
+          // 设置底部
+          this.setXstj(res.data.bottom)
+          // 设置地图数据
+          this.setMaps(res.data.map)
+          this.$nextTick()
         }
       })
     }
   },
   created () {
-    this.init()
-  },
-  mounted () {}
+    this._bscrenn()
+    setInterval(() => {
+      console.log('定时器')
+      this._bscrenn()
+    }, 30000)
+  }
 }
 </script>
 <style lang='stylus' scoped>

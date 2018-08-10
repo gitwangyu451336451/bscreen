@@ -7,3 +7,6 @@ export const setZslb = ({commit}, val) => {
 export const setXstj = ({commit}, val) => {
   commit('set_xstj', val)
 }
+export const setMaps = ({commit}, val) => {
+  commit('set_maps', val)
+}

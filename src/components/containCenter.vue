@@ -2,25 +2,25 @@
   <div class='contain-left' >
     <div class="top-wrapper">
       <div class="register">
-        <div class="register-num">96.38%</div>
+        <div class="register-num">{{maps.register.num}}</div>
         <div class="register-text">报到率</div>
         <div class="register-bottom">
           <p>
-            <label class="register-nums">12721</label>
+            <label class="register-nums">{{maps.register.registernum}}</label>
             <span class="register-personal space">报到人数</span>
-            <label class="register-nums">12721</label>
+            <label class="register-nums">{{maps.register.enroll}}</label>
             <span class="register-personal">录取人数</span>
           </p>
         </div>
       </div>
       <div class="enroll">
-        <div class="enroll-num">96.38%</div>
+        <div class="enroll-num">{{maps.enroll.num}}</div>
         <div class="enroll-text">录取率</div>
         <div class="enroll-bottom">
           <p>
-            <label class="enroll-nums">12721</label>
+            <label class="enroll-nums">{{maps.enroll.enrollnum}}</label>
             <span class="enroll-personal space">录取人数</span>
-            <label class="enroll-nums">12721</label>
+            <label class="enroll-nums">{{maps.enroll.plan}}</label>
             <span class="enroll-personal">计划人数</span>
           </p>
         </div>
@@ -30,8 +30,8 @@
     <div class="man-fem">
       <p class="man-title">男女比例</p>
       <div class="man-content">
-        <div class="man">76%</div>
-        <div class="fem">24%</div>
+        <div class="man">{{maps.man}}</div>
+        <div class="fem">{{maps.fem}}</div>
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@
 
 <script>
 import { data } from './map.js'
+import { mapGetters } from 'vuex'
 require('echarts/lib/chart/map')
 require('echarts/map/js/china')
 let maxSize4Pin = 100
@@ -46,8 +47,6 @@ let minSize4Pin = 20
 let max = 480
 let min = 9
 export default {
-  components: {},
-  props: {},
   data () {
     // 配置数据
     return {
@@ -70,102 +69,71 @@ export default {
         }
       }
       return res
+    },
+    // 实例化地图数据
+    initChart () {
+      let myChart = this.$echarts.init(document.getElementById('map'))
+      // 开启加载中
+      myChart.showLoading()
+      // 获取地图数据
+      let mapFeatures = this.$echarts.getMap(this.mapName).geoJson.features
+      myChart.hideLoading()
+      mapFeatures.forEach(v => {
+        // 地区名称
+        var name = v.properties.name
+        // 地区经纬度
+        this.geoCoordMap[name] = v.properties.cp
+      })
+      myChart.setOption(this.option)
     }
   },
   mounted () {
-    let myChart = this.$echarts.init(document.getElementById('map'))
-    // 开启加载中
-    myChart.showLoading()
-    // 获取地图数据
-    let mapFeatures = this.$echarts.getMap(this.mapName).geoJson.features
-    myChart.hideLoading()
-    mapFeatures.forEach(v => {
-      // 地区名称
-      var name = v.properties.name
-      // 地区经纬度
-      this.geoCoordMap[name] = v.properties.cp
-    })
-    let option = {
-      tooltip: {
-        trigger: 'item',
-        formatter: '报到人数:{c}'
-      },
-      visualMap: {
-        show: true,
-        min: 0,
-        max: 200,
-        left: '40',
-        top: 'bottom',
-        text: ['高', '低'], // 文本，默认为数值文本
-        calculable: true,
-        seriesIndex: [1],
-        inRange: {
-          color: ['#04275d', '#f5b500', '#234c84', '#0d4295'] // 蓝绿
-        }
-      },
-      geo: {
-        show: true,
-        map: this.mapName,
-        label: {
-          normal: {
-            show: false
-          },
-          emphasis: {
-            show: false
+    setTimeout(() => {
+      this.initChart()
+    }, 1000)
+  },
+  computed: {
+    // 地图配置项
+    option () {
+      let option = {
+        tooltip: {
+          trigger: 'item',
+          formatter: function (params) {
+            let res = ''
+            if (typeof(params.value) === 'number') {
+              res = `${params.name}:<br>
+                报到人数: ${params.value}
+              `
+            } else {
+              res = `${params.name}:<br>
+                报到人数: ${params.value[2]}
+              `
+            }
+            return res
           }
         },
-        roam: true,
-        itemStyle: {
-          normal: {
-            areaColor: '#031525',
-            borderColor: '#3B5077'
-          },
-          emphasis: {
-            areaColor: '#2B91B7'
-          }
-        }
-      },
-      series: [
-        {
-          name: '散点',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          data: this.convertData(data),
-          // 散点的大小
-          symbolSize: function (val) {
-            return val[2] / 10
-          },
-          label: {
-            normal: {
-              formatter: '{b}',
-              position: 'right',
-              show: true
-            },
-            emphasis: {
-              show: true
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#05C3F9'
-            }
+        visualMap: {
+          show: true,
+          min: 0,
+          max: 200,
+          left: '40',
+          top: 'bottom',
+          text: ['高', '低'], // 文本，默认为数值文本
+          calculable: true,
+          seriesIndex: [1],
+          inRange: {
+            color: ['#04275d', '#f5b500', '#234c84', '#0d4295'] // 蓝绿
           }
         },
-        {
-          type: 'map',
+        geo: {
+          show: true,
           map: this.mapName,
-          geoIndex: 0,
-          aspectScale: 0.75, // 长宽比
-          showLegendSymbol: false, // 存在legend时显示
           label: {
             normal: {
-              show: true
+              show: false
             },
             emphasis: {
-              show: false,
-              textStyle: {
-                color: '#fff'
-              }
+              show: false
             }
           },
           roam: true,
@@ -177,44 +145,99 @@ export default {
             emphasis: {
               areaColor: '#2B91B7'
             }
-          },
-          animation: false,
-          data: data
+          }
         },
-        {
-          name: '点',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbol: 'pin', // 气泡
-          symbolSize: function (val) {
-            var a = (maxSize4Pin - minSize4Pin) / (max - min)
-            var b = minSize4Pin - a * min
-            b = maxSize4Pin - a * max
-            return a * val[2] + b
-          },
-          label: {
-            normal: {
-              show: true,
-              formatter: '{@[2]}',
-              textStyle: {
-                color: '#fff',
-                fontSize: 9
+        series: [
+          {
+            name: '散点',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            data: this.convertData(this.maps.maps),
+            // 散点的大小
+            symbolSize: function (val) {
+              return val[2] / 10
+            },
+            label: {
+              normal: {
+                formatter: '{b}',
+                position: 'right',
+                show: true
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: '#05C3F9'
               }
             }
           },
-          itemStyle: {
-            normal: {
-              color: '#F62157' // 标志颜色
-            }
+          {
+            type: 'map',
+            map: this.mapName,
+            geoIndex: 0,
+            aspectScale: 0.75, // 长宽比
+            showLegendSymbol: false, // 存在legend时显示
+            label: {
+              normal: {
+                show: true
+              },
+              emphasis: {
+                show: false,
+                textStyle: {
+                  color: '#fff'
+                }
+              }
+            },
+            roam: true,
+            itemStyle: {
+              normal: {
+                areaColor: '#031525',
+                borderColor: '#3B5077'
+              },
+              emphasis: {
+                areaColor: '#2B91B7'
+              }
+            },
+            animation: false,
+            data: data
           },
-          zlevel: 6,
-          data: this.convertData(data)
-        }
-      ]
-    }
-    myChart.setOption(option)
-  },
-  created () {}
+          {
+            name: '点',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            symbol: 'pin', // 气泡
+            symbolSize: function (val) {
+              var a = (maxSize4Pin - minSize4Pin) / (max - min)
+              var b = minSize4Pin - a * min
+              b = maxSize4Pin - a * max
+              return a * val[2] + b
+            },
+            label: {
+              normal: {
+                show: true,
+                formatter: '{@[2]}',
+                textStyle: {
+                  color: '#fff',
+                  fontSize: 9
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: '#F62157' // 标志颜色
+              }
+            },
+            zlevel: 6,
+            data: this.convertData(this.maps.maps)
+          }
+        ]
+      }
+      return option
+    },
+    ...mapGetters(['maps'])
+  }
 }
 </script>
 <style lang='stylus' scoped>

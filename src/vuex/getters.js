@@ -7,3 +7,4 @@ export const getZslb = state => {
 export const getXstj = state => {
   return state.xstj
 }
+export const maps = state => state.maps

@@ -92,7 +92,7 @@ export default {
   watch: {
     getXstj (val, old) {
       this.$nextTick(() => {
-        let speed = 100
+        let speed = 400
         let tab = document.getElementById('demo')
         let w = tab.clientWidth / 4
         let tab1 = document.getElementById('demo1')

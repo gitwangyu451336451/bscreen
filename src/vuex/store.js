@@ -9,7 +9,8 @@ Vue.use(Vuex)
 const state = {
   collogeData: [],
   zslb: [],
-  xstj: []
+  xstj: [],
+  maps: {}
 }
 
 // 定义所需的 mutations
@@ -22,6 +23,10 @@ const mutations = {
   },
   set_xstj (val, stus) {
     state.xstj = stus
+  },
+  // 设置地图所需要的数据
+  set_maps (val, map) {
+    state.maps = map
   }
 }
 
