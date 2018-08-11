@@ -100,7 +100,7 @@ export default {
           trigger: 'item',
           formatter: function (params) {
             let res = ''
-            if (typeof(params.value) === 'number') {
+            if (typeof (params.value) === 'number') {
               res = `${params.name}:<br>
                 报到人数: ${params.value}
               `

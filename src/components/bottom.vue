@@ -91,35 +91,38 @@ export default {
   },
   watch: {
     getXstj (val, old) {
-      this.$nextTick(() => {
-        let speed = 400
-        let tab = document.getElementById('demo')
-        let w = tab.clientWidth / 4
-        let tab1 = document.getElementById('demo1')
-        let aObj = tab1.getElementsByTagName('a')
-        for (let i = 0; i < aObj.length; i++) {
-          aObj[i].style.width = w + 'px'
-        }
-        let tab2 = document.getElementById('demo2')
-        let aObj2 = tab2.getElementsByTagName('a')
-        for (let i = 0; i < aObj2.length; i++) {
-          aObj2[i].style.width = w + 'px'
-        }
-        function Marquee () {
-          if (tab2.offsetWidth - tab.scrollLeft <= 0) {
-            tab.scrollLeft -= tab1.offsetWidth
-          } else {
-            tab.scrollLeft++
+      console.log(val.length > 0 && old.length <= 0)
+      if (val.length > 0 && old.length <= 0) {
+        this.$nextTick(() => {
+          let speed = 100
+          let tab = document.getElementById('demo')
+          let w = tab.clientWidth / 4
+          let tab1 = document.getElementById('demo1')
+          let aObj = tab1.getElementsByTagName('a')
+          for (let i = 0; i < aObj.length; i++) {
+            aObj[i].style.width = w + 'px'
           }
-        }
-        let MyMar = setInterval(Marquee, speed)
-        tab.onmouseover = function () {
-          clearInterval(MyMar)
-        }
-        tab.onmouseout = function () {
-          MyMar = setInterval(Marquee, speed)
-        }
-      })
+          let tab2 = document.getElementById('demo2')
+          let aObj2 = tab2.getElementsByTagName('a')
+          for (let i = 0; i < aObj2.length; i++) {
+            aObj2[i].style.width = w + 'px'
+          }
+          function Marquee () {
+            if (tab2.offsetWidth - tab.scrollLeft <= 0) {
+              tab.scrollLeft -= tab1.offsetWidth
+            } else {
+              tab.scrollLeft++
+            }
+          }
+          let MyMar = setInterval(Marquee, speed)
+          tab.onmouseover = function () {
+            clearInterval(MyMar)
+          }
+          tab.onmouseout = function () {
+            MyMar = setInterval(Marquee, speed)
+          }
+        })
+      }
     }
   },
   mounted () {},
@@ -159,7 +162,7 @@ export default {
 
   >img.bright {
     position: absolute;
-    bottom: 0.3rem;
+    bottom: 0.25rem;
     right: 0.07rem;
     transform: translateX(-50%);
     cursor: pointer;
@@ -167,7 +170,7 @@ export default {
 
   >img.bleft {
     position: absolute;
-    bottom: 0.3rem;
+    bottom: 0.25rem;
     left: 0.25rem;
     transform: translateX(-50%);
     cursor: pointer;
