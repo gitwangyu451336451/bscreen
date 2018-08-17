@@ -55,7 +55,7 @@ export default {
 	min-width: 1024px
 	min-height: 645px
 	overflow-y: auto
-	background: url('/bscreen/static/stageData/bg.png')
+	background: url('/static/stageData/bg.png')
 	>img
 		position: absolute
 		display: block
