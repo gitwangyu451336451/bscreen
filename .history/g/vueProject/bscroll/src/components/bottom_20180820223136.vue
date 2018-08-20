@@ -77,8 +77,8 @@
                   <th>人数</th>
                   <th>占比</th>
                 </tr>
-                <tr v-for="(m,n) in item.list"
-                    :key="'m'+n">
+                <tr v-for="(m,i) in item.list"
+                    :key="'m'+i">
                   <td>{{m.name}}</td>
                   <td>{{m.rs}}</td>
                   <td>{{m.zb}}%</td>

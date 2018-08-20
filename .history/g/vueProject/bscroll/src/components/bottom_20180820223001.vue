@@ -66,7 +66,7 @@
                    :class="{'mr18':b>0}"
                    style="color: #0076b1"
                    v-for="(a,b) in item.list"
-                   :key="'c'+b">已办理</p>
+                   :key="'a'+b">已办理</p>
                 <!-- <p class="fr mr24"
                    style="color: #0076b1">未办理</p> -->
                 <div style="clear: both"></div>
@@ -77,8 +77,8 @@
                   <th>人数</th>
                   <th>占比</th>
                 </tr>
-                <tr v-for="(m,n) in item.list"
-                    :key="'m'+n">
+                <tr v-for="m in item.list"
+                    :key="m">
                   <td>{{m.name}}</td>
                   <td>{{m.rs}}</td>
                   <td>{{m.zb}}%</td>
