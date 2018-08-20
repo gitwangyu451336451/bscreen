@@ -5,7 +5,7 @@
 				<img src="/static/stageData/yxxt_bglogin.png">
 			</Col>
 			<Col span="8" class="header-title">
-				<p class="liuhhai">迎新统计大数据平台</p>
+				<!-- <p class="liuhhai">迎新统计大数据平台</p> -->
 			</Col>
 			<Col span="8" style="height: 100%;" class="header-date">
 				<div class="come_right_two">
@@ -24,6 +24,7 @@
 				</div>
 			</Col>
 		</Row>
+		<div class="bg-liu"></div>
 	</div>
 </template>
 
@@ -63,8 +64,7 @@ export default {
 	height: .45rem
 	color: #dedede
 	background: linear-gradient(#011126 40%, #011126, #07345D)
-  // .header-title
-  //   background url('/static/stageData/liuhai.png')
+	position relative
 	.header-logo ,.header-title
 		height: 100%
 		> img
@@ -102,4 +102,6 @@ export default {
 			img
 				width: .24rem
 				margin-right: .15rem
+	.bg-liu
+		background url('/static/stageData/liuhai.png') no-repeat
 </style>

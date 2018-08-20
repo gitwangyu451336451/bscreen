@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     mouseover () {
-     clearInterval(this.timer)
+      clearInterval(this.timer)
     },
     setTime () {
       this.timer = setInterval(() => {
