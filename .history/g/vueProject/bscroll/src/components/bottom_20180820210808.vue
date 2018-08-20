@@ -1,35 +1,28 @@
 <template>
-  <div class="bottom"
-       v-if="getXstj.length>0">
-    <img class="bg"
-         src="/static/stageData/bt.png">
-    <img class="bleft"
-         src="/static/stageData/yxxt_zhd.png">
-    <img class="bright"
-         src="/static/stageData/yxxt_yhd.png">
+	<div class="bottom" v-if="getXstj.length>0">
+    <img class="bg" src="/static/stageData/bt.png">
+    <img class="bleft" src="/static/stageData/yxxt_zhd.png">
+    <img class="bright" src="/static/stageData/yxxt_yhd.png">
     <Row>
       <Col span="7">
-      <div class="cl-title">
-        <img src="/static/stageData/xs.png"> 学生统计
-      </div>
+        <div class="cl-title">
+          <img src="/static/stageData/xs.png">
+          学生统计
+        </div>
       </Col>
     </Row>
     <div id="demo">
       <div id="indemo">
         <div id="demo1">
-          <a href="#"
-             v-for="(item, i) in getXstj"
-             :key="'item'+i">
+          <a href="#" v-for="(item, i) in getXstj" :key="'item'+i">
             <div>
               <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
               <div>
-                <p class="fr"
-                   style="color: #0076b1">已办理</p>
-                <p class="fr mr24"
-                   style="color: #0076b1">未办理</p>
+                <p class="fr" style="color: #0076b1">已办理</p>
+                <p class="fr mr24" style="color: #0076b1">未办理</p>
                 <div style="clear: both"></div>
               </div>
               <table>
@@ -54,27 +47,18 @@
           </a>
         </div>
         <div id="demo2">
-          <a href="#"
-             v-for="(item, i) in getXstj"
-             :key="'item1'+i">
+          <a href="#" v-for="(item, i) in getXstj" :key="'item1'+i">
             <div>
               <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
               <div>
-                <p class="fr"
-                   style="color: #0076b1">已办理</p>
-                <p class="fr mr24"
-                   style="color: #0076b1">未办理</p>
+                <p class="fr" style="color: #0076b1">已办理</p>
+                <p class="fr mr24" style="color: #0076b1">未办理</p>
                 <div style="clear: both"></div>
               </div>
               <table>
-                <tr>
-                  <th>状态</th>
-                  <th>人数</th>
-                  <th>占比</th>
-                </tr>
                 <tr>
                   <td>已办理</td>
                   <td>{{item.list.ybrs}}</td>
@@ -92,7 +76,7 @@
         </div>
       </div>
     </div>
-  </div>
+	</div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -141,7 +125,7 @@ export default {
       }
     }
   },
-  mounted () { },
+  mounted () {},
   components: { chart }
 }
 </script>
@@ -180,7 +164,7 @@ export default {
     position: absolute;
     bottom: 0.35rem;
     right: 0.07rem;
-    height: 0.8rem;
+    height: .8rem;
     transform: translateX(-50%);
     cursor: pointer;
   }
@@ -189,7 +173,7 @@ export default {
     position: absolute;
     bottom: 0.35rem;
     left: 0.25rem;
-    height: 0.8rem;
+    height: .8rem;
     transform: translateX(-50%);
     cursor: pointer;
   }
