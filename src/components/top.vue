@@ -39,7 +39,7 @@ export default {
     getTimes () {
       let week = '星期' + '日一二三四五六'.charAt(new Date().getDay())
       let myDate = new Date()
-      let date = myDate.getFullYear() + '.' + (myDate.getMonth()+1) + '.' + myDate.getDate()
+      let date = myDate.getFullYear() + '.' + (myDate.getMonth() + 1) + '.' + myDate.getDate()
       let time = myDate.getHours() + ':' + myDate.getMinutes() + ':' + myDate.getSeconds()
       this.times = {
         week,
