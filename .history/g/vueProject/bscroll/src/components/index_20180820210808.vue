@@ -1,9 +1,9 @@
 <template>
-  <div class="contents">
-    <top></top>
-    <contain></contain>
-    <bottom></bottom>
-  </div>
+<div class="contents">
+	<top></top>
+	<contain></contain>
+	<bottom></bottom>
+</div>
 </template>
 
 <script>
@@ -13,9 +13,8 @@ import contain from './contain'
 import { ERR_OK } from 'api/config'
 import { mapActions } from 'vuex'
 import { bscrenn } from 'api/index' // 获取大屏所有数据接口
-import { getXstj } from 'api/bscreen'
 export default {
-  components: { top, bottom, contain },
+  components: {top, bottom, contain},
   methods: {
     ...mapActions([
       'setCollogeData',
@@ -25,11 +24,6 @@ export default {
     ]),
     // 获取初始化的数据
     _bscrenn () {
-      getXstj().then((res) => {
-        if (res.status === 200) {
-          this.setXstj(res.data)
-        }
-      })
       bscrenn().then(res => {
         res = res.data
         if (res.state === ERR_OK) {
@@ -38,7 +32,7 @@ export default {
           // 设置左边栏
           this.setZslb(res.data.left)
           // 设置底部
-
+          this.setXstj(res.data.bottom)
           // 设置地图数据
           this.setMaps(res.data.map)
           this.$nextTick()
@@ -56,24 +50,19 @@ export default {
 }
 </script>
 <style lang='stylus' scoped>
-.contents {
-  height: 100%;
-  min-width: 1024px;
-  min-height: 645px;
-  overflow-y: auto;
-  background: url('/static/stageData/bg.png');
-
-  >img {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    left: 0;
-  }
-
-  >div {
-    position: relative;
-    box-sizing: border-box;
-  }
-}
+.contents
+	height: 100%
+	min-width: 1024px
+	min-height: 645px
+	overflow-y: auto
+	background: url('/static/stageData/bg.png')
+	>img
+		position: absolute
+		display: block
+		width: 100%
+		height: 100%
+		left: 0
+	>div
+		position: relative
+		box-sizing: border-box
 </style>

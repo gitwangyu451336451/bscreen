@@ -114,7 +114,7 @@ exports.server = function () {
             "zb": "20.70"
           },
           {
-            "name": "已放弃",
+            "name": "未办理",
             "rs": "1331",
             "zb": "20.70"
           }

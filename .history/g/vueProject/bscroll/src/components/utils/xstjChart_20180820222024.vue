@@ -21,6 +21,7 @@ export default {
           selected: false,
           itemStyle: {
             normal: {
+              fontSize: '12'
               color: i === 0 ? '#1897d6' : i === 1 ? '#09c4fb' : '#adadad'
             }
           }
@@ -43,7 +44,7 @@ export default {
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: '10',
+                    fontSize: '30',
                     fontWeight: 'bold'
                   }
                 }

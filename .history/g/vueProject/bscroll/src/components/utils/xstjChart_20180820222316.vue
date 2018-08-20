@@ -38,12 +38,16 @@ export default {
               label: {
                 normal: {
                   show: false,
+
+                  textStyle: {
+                    fontSize: 12
+                  },
                   position: 'center'
                 },
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: '10',
+                    fontSize: '30',
                     fontWeight: 'bold'
                   }
                 }

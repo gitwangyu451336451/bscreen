@@ -312,7 +312,7 @@ export default {
         left: -0.14rem;
         top: 50%;
         transform: translateY(-50%);
-        background: #adadad;
+        background: #09c4fb;
       }
     }
   }

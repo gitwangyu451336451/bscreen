@@ -302,18 +302,6 @@ export default {
         transform: translateY(-50%);
         background: #09c4fb;
       }
-
-      >div>p:nth-child(3):before {
-        content: '';
-        display: block;
-        position: absolute;
-        width: 0.12rem;
-        height: 0.12rem;
-        left: -0.14rem;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #adadad;
-      }
     }
   }
 }

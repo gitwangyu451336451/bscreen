@@ -27,12 +27,9 @@
             <div>
               <div>
                 <p class="fr"
-                   :class="{'mr18':b>0}"
-                   style="color: #0076b1"
-                   v-for="(a,b) in item.list"
-                   :key="'a'+b">{{a.name}}</p>
-                <!-- <p class="fr mr24"
-                   style="color: #0076b1">未办理</p> -->
+                   style="color: #0076b1">已办理</p>
+                <p class="fr mr24"
+                   style="color: #0076b1">未办理</p>
                 <div style="clear: both"></div>
               </div>
               <table>
@@ -43,7 +40,7 @@
                 </tr>
                 <tr v-for="(m,n) in item.list"
                     :key="'xstj'+n">
-                  <td>{{m.name}}</td>
+                  <td>已办理</td>
                   <td>{{m.rs}}</td>
                   <td>{{m.zb}}%</td>
                 </tr>
@@ -74,11 +71,15 @@
                   <th>人数</th>
                   <th>占比</th>
                 </tr>
-                <tr v-for="m in item.list"
-                    :key="m">
-                  <td>{{m.name}}</td>
-                  <td>{{m.rs}}</td>
-                  <td>{{m.zb}}%</td>
+                <tr>
+                  <td>已办理</td>
+                  <td>{{item.list.ybrs}}</td>
+                  <td>{{item.list.ybzb}}%</td>
+                </tr>
+                <tr>
+                  <td>未办理</td>
+                  <td>{{item.list.wbrs}}</td>
+                  <td>{{item.list.wbzb}}%</td>
                 </tr>
               </table>
             </div>
@@ -102,6 +103,7 @@ export default {
   },
   watch: {
     getXstj (val, old) {
+      console.log(val.length > 0 && old.length <= 0)
       if (val.length > 0 && old.length <= 0) {
         this.$nextTick(() => {
           let speed = 100
@@ -270,8 +272,8 @@ export default {
 
         td {
           color: white;
-          height: 0.18rem;
-          line-height: 0.18rem;
+          height: 0.24rem;
+          line-height: 0.24rem;
         }
       }
 
@@ -301,18 +303,6 @@ export default {
         top: 50%;
         transform: translateY(-50%);
         background: #09c4fb;
-      }
-
-      >div>p:nth-child(3):before {
-        content: '';
-        display: block;
-        position: absolute;
-        width: 0.12rem;
-        height: 0.12rem;
-        left: -0.14rem;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #adadad;
       }
     }
   }

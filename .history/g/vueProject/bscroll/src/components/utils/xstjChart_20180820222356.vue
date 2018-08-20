@@ -37,13 +37,16 @@ export default {
               avoidLabelOverlap: false,
               label: {
                 normal: {
-                  show: false,
+                  show: show,
+                  textStyle: {
+                    fontSize: 12
+                  },
                   position: 'center'
                 },
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: '10',
+                    fontSize: '30',
                     fontWeight: 'bold'
                   }
                 }

@@ -27,10 +27,10 @@
             <div>
               <div>
                 <p class="fr"
-                   :class="{'mr18':b>0}"
+                   :class="{'mr12':b>0}"
                    style="color: #0076b1"
                    v-for="(a,b) in item.list"
-                   :key="'a'+b">{{a.name}}</p>
+                   :key="'a'+b">已办理</p>
                 <!-- <p class="fr mr24"
                    style="color: #0076b1">未办理</p> -->
                 <div style="clear: both"></div>
@@ -301,18 +301,6 @@ export default {
         top: 50%;
         transform: translateY(-50%);
         background: #09c4fb;
-      }
-
-      >div>p:nth-child(3):before {
-        content: '';
-        display: block;
-        position: absolute;
-        width: 0.12rem;
-        height: 0.12rem;
-        left: -0.14rem;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #adadad;
       }
     }
   }

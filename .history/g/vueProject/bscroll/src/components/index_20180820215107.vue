@@ -26,7 +26,9 @@ export default {
     // 获取初始化的数据
     _bscrenn () {
       getXstj().then((res) => {
+        console.log(res.status)
         if (res.status === 200) {
+          console.log(res.data)
           this.setXstj(res.data)
         }
       })

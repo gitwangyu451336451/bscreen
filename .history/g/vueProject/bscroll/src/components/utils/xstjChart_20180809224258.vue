@@ -1,6 +1,5 @@
 <template>
-  <div class="xslbChart"
-       ref="xslbChart">
+  <div class="xslbChart" ref="xslbChart">
 
   </div>
 </template>
@@ -13,20 +12,6 @@ export default {
   },
   computed: {
     option () {
-      let data = []
-      this.data.forEach((r, i) => {
-        let d = {
-          value: r.rs,
-          name: r.name,
-          selected: false,
-          itemStyle: {
-            normal: {
-              color: i === 0 ? '#1897d6' : i === 1 ? '#09c4fb' : '#adadad'
-            }
-          }
-        }
-        data.push(d)
-      })
       let option = {
         baseOption: {
           series: [
@@ -43,7 +28,7 @@ export default {
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: '10',
+                    fontSize: '30',
                     fontWeight: 'bold'
                   }
                 }
@@ -60,7 +45,28 @@ export default {
                   borderColor: '#06203f'
                 }
               },
-              data: data
+              data: [
+                {
+                  value: this.data.wbrs,
+                  name: '',
+                  selected: false,
+                  itemStyle: {
+                    normal: {
+                      color: '#09c4fb'
+                    }
+                  }
+                },
+                {
+                  value: this.data.ybrs,
+                  name: '',
+                  itemStyle: {
+                    normal: {
+                      color: '#1897d6',
+                      opacity: 0.8
+                    }
+                  }
+                }
+              ]
             }
           ]
         }

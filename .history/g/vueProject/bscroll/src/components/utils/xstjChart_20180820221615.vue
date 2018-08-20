@@ -17,11 +17,11 @@ export default {
       this.data.forEach((r, i) => {
         let d = {
           value: r.rs,
-          name: r.name,
-          selected: false,
+          name: '',
+          selected: false
           itemStyle: {
             normal: {
-              color: i === 0 ? '#1897d6' : i === 1 ? '#09c4fb' : '#adadad'
+              color: '#09c4fb'
             }
           }
         }
@@ -43,7 +43,7 @@ export default {
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: '10',
+                    fontSize: '30',
                     fontWeight: 'bold'
                   }
                 }
