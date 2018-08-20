@@ -16,7 +16,7 @@
         <div id="demo1">
           <a href="#" v-for="(item, i) in getXstj" :key="'item'+i">
             <div>
-              <p>缴费</p>
+              <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
@@ -49,7 +49,7 @@
         <div id="demo2">
           <a href="#" v-for="(item, i) in getXstj" :key="'item1'+i">
             <div>
-              <p>缴费</p>
+              <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
