@@ -162,16 +162,18 @@ export default {
 
   >img.bright {
     position: absolute;
-    bottom: 0.25rem;
+    bottom: 0.35rem;
     right: 0.07rem;
+    height: .8rem;
     transform: translateX(-50%);
     cursor: pointer;
   }
 
   >img.bleft {
     position: absolute;
-    bottom: 0.25rem;
+    bottom: 0.35rem;
     left: 0.25rem;
+    height: .8rem;
     transform: translateX(-50%);
     cursor: pointer;
   }
