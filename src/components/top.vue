@@ -2,28 +2,29 @@
 	<div class="wel_come_top">
 		<Row style="height: 100%;">
 			<Col span="8" class="header-logo">
-				<img src="static/stageData/yxxt_bglogin.png">
+				<img src="/static/stageData/yxxt_bglogin.png">
 			</Col>
 			<Col span="8" class="header-title">
-				<p>迎新统计大数据平台</p>
+				<!-- <p class="liuhhai">迎新统计大数据平台</p> -->
 			</Col>
 			<Col span="8" style="height: 100%;" class="header-date">
 				<div class="come_right_two">
 					<div class="come_data_one">
-						<p>00:00:00</p>
+						<p>{{times.time}}</p>
 					</div>
 				</div>
 				<div class="come_data_two" style="color: #6e747d">
-					<p>星期一</p>
-					<label>2000.1.1</label>
+					<p>{{times.week}}</p>
+					<label>{{times.date}}</label>
 				</div>
 				<div class="come_right_one">
-					<img src="static/stageData/yxxt_all_set.png">
-					<img src="static/stageData/yxxt_hf.png">
-					<img src="static/stageData/yxxt_sz.png">
+					<img src="/static/stageData/yxxt_all_set.png">
+					<img src="/static/stageData/yxxt_hf.png">
+					<img src="/static/stageData/yxxt_sz.png">
 				</div>
 			</Col>
 		</Row>
+		<div class="bg-liu"></div>
 	</div>
 </template>
 
@@ -31,11 +32,28 @@
 export default {
   data () {
     return {
-
+      times: {}
     }
   },
-  components: {
-
+  methods: {
+    // 获取日期和时间
+    getTimes () {
+      let week = '星期' + '日一二三四五六'.charAt(new Date().getDay())
+      let myDate = new Date()
+      let date = myDate.getFullYear() + '.' + (myDate.getMonth() + 1) + '.' + myDate.getDate()
+      let time = myDate.getHours() + ':' + myDate.getMinutes() + ':' + myDate.getSeconds()
+      this.times = {
+        week,
+        date,
+        time
+      }
+    }
+  },
+  created () {
+    this.getTimes()
+    setInterval(() => {
+      this.getTimes()
+    }, 1000)
   }
 }
 </script>
@@ -46,6 +64,7 @@ export default {
 	height: .45rem
 	color: #dedede
 	background: linear-gradient(#011126 40%, #011126, #07345D)
+	position relative
 	.header-logo ,.header-title
 		height: 100%
 		> img
@@ -83,4 +102,6 @@ export default {
 			img
 				width: .24rem
 				margin-right: .15rem
+	.bg-liu
+		background url('/static/stageData/liuhai.png') no-repeat
 </style>

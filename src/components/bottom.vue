@@ -1,12 +1,12 @@
 <template>
 	<div class="bottom" v-if="getXstj.length>0">
-    <img class="bg" src="static/stageData/bt.png">
-    <img class="bleft" src="static/stageData/yxxt_zhd.png">
-    <img class="bright" src="static/stageData/yxxt_yhd.png">
+    <img class="bg" src="/static/stageData/bt.png">
+    <img class="bleft" src="/static/stageData/yxxt_zhd.png">
+    <img class="bright" src="/static/stageData/yxxt_yhd.png">
     <Row>
       <Col span="7">
         <div class="cl-title">
-          <img src="static/stageData/xs.png">
+          <img src="/static/stageData/xs.png">
           学生统计
         </div>
       </Col>
@@ -16,7 +16,7 @@
         <div id="demo1">
           <a href="#" v-for="(item, i) in getXstj" :key="'item'+i">
             <div>
-              <p>缴费</p>
+              <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
@@ -49,7 +49,7 @@
         <div id="demo2">
           <a href="#" v-for="(item, i) in getXstj" :key="'item1'+i">
             <div>
-              <p>缴费</p>
+              <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
@@ -141,7 +141,7 @@ export default {
     color: white;
     height: 0.25rem;
     line-height: 0.25rem;
-    background: url('/bscreen/static/stageData/lefttwo.png') no-repeat;
+    background: url('/static/stageData/lefttwo.png') no-repeat;
     text-align: left;
 
     img {

@@ -2,9 +2,9 @@
   <div class="contain_right">
     <div class="cl-title">
       学院统计
-      <img src="static/stageData/xy.png">
+      <img src="/static/stageData/xy.png">
     </div>
-    <img src="static/stageData/r1.png">
+    <img src="/static/stageData/r1.png">
     <div class="cl-progress">
       <v-progress :data="getCollogeData"></v-progress>
     </div>
@@ -56,7 +56,7 @@ export default {
     line-height: .25rem
     background: #0c5789
     text-align: right
-    background: url('/bscreen/static/stageData/rightone.png') no-repeat
+    background: url('/static/stageData/rightone.png') no-repeat
     img
       width: .14rem
       margin-right: .24rem

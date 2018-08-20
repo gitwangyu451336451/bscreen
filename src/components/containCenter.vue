@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { data } from './map.js'
 import { mapGetters } from 'vuex'
 require('echarts/lib/chart/map')
 require('echarts/map/js/china')
@@ -70,6 +69,15 @@ export default {
       }
       return res
     },
+    // 获取对象中最大值
+    _setMax (data) {
+      let arr = []
+      console.log(data)
+      data.forEach(item => {
+        arr.push(item.value)
+      })
+      return Math.max(...arr)
+    },
     // 实例化地图数据
     initChart () {
       let myChart = this.$echarts.init(document.getElementById('map'))
@@ -99,6 +107,9 @@ export default {
         tooltip: {
           trigger: 'item',
           formatter: function (params) {
+            if (isNaN(params.value)) {
+              return `${params.name}`
+            }
             let res = ''
             if (typeof (params.value) === 'number') {
               res = `${params.name}:<br>
@@ -115,7 +126,7 @@ export default {
         visualMap: {
           show: true,
           min: 0,
-          max: 200,
+          max: this._setMax(this.maps.maps),
           left: '40',
           top: 'bottom',
           text: ['高', '低'], // 文本，默认为数值文本
@@ -201,7 +212,7 @@ export default {
               }
             },
             animation: false,
-            data: data
+            data: this.maps.maps
           },
           {
             name: '点',
@@ -247,7 +258,7 @@ export default {
   height 110%
   #map
     height 80%
-    background: url('/bscreen/static/stageData/map.png') no-repeat
+    background: url('/static/stageData/map.png') no-repeat
     background-size contain
   .top-wrapper
     height 16%
@@ -259,7 +270,7 @@ export default {
       height 100%
       text-align center
       position absolute
-      background: url('/bscreen/static/stageData/map-left.png') no-repeat
+      background: url('/static/stageData/map-left.png') no-repeat
       background-size 100% 100%
       background-color #041636
       z-index 1
@@ -288,7 +299,7 @@ export default {
     .enroll
       position absolute
       right 23px
-      background: url('/bscreen/static/stageData/map-right.png') no-repeat
+      background: url('/static/stageData/map-right.png') no-repeat
       background-size 100% 100%
       height 80%
       padding 0 15px
@@ -325,7 +336,7 @@ export default {
       color rgba(27,181,255,0.95)
       font-size 15px
     .man-content
-      background url('/bscreen/static/stageData/man-fem.png') no-repeat
+      background url('/static/stageData/man-fem.png') no-repeat
       height 77px
       &>div
         color #fff
