@@ -149,14 +149,13 @@ export default {
           for (let i = 0; i < aObj2.length; i++) {
             aObj2[i].style.width = w + 'px'
           }
-        })
-      }
+        }
     }
-  },
-  mounted () {
-  },
-  components: { chart }
-}
+    },
+    mounted () {
+    },
+    components: { chart }
+  }
 </script>
 
 <style scoped lang="stylus">

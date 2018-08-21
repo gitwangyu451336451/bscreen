@@ -107,6 +107,7 @@ export default {
     getXstj (val, old) {
       if (val.length > 4 && old.length <= 0) {
         this.$nextTick(() => {
+          let speed = 100
           let tab = document.getElementById('demo')
           let w = tab.clientWidth / 4
           let tab1 = document.getElementById('demo1')
@@ -119,7 +120,6 @@ export default {
           for (let i = 0; i < aObj2.length; i++) {
             aObj2[i].style.width = w + 'px'
           }
-          let speed = 100
           function Marquee () {
             if (tab2.offsetWidth - tab.scrollLeft <= 0) {
               tab.scrollLeft -= tab1.offsetWidth
@@ -133,21 +133,6 @@ export default {
           }
           tab.onmouseout = function () {
             MyMar = setInterval(Marquee, speed)
-          }
-        })
-      } else {
-        this.$nextTick(() => {
-          let tab = document.getElementById('demo')
-          let w = tab.clientWidth / 4
-          let tab1 = document.getElementById('demo1')
-          let aObj = tab1.getElementsByTagName('a')
-          for (let i = 0; i < aObj.length; i++) {
-            aObj[i].style.width = w + 'px'
-          }
-          let tab2 = document.getElementById('demo2')
-          let aObj2 = tab2.getElementsByTagName('a')
-          for (let i = 0; i < aObj2.length; i++) {
-            aObj2[i].style.width = w + 'px'
           }
         })
       }
