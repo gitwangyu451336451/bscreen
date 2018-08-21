@@ -42,7 +42,7 @@ export default {
               data: [
                 {
                   value: 12345,
-                  name: this.data.zb
+                  name: (100 - this.data.zb) + '%'
                 }
               ]
             },

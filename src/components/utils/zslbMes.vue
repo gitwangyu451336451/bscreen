@@ -6,7 +6,7 @@
      </div>
      <div class="mt12 zslbObj-ms">
          <span class="mr8">未到人数: {{data.wd}}(人)</span>
-         占比: {{data.zb}}
+         占比: {{data.zb}}%
      </div>
  </div>
 </template>
