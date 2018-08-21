@@ -25,11 +25,6 @@ export default {
     ]),
     // 获取初始化的数据
     _bscrenn () {
-      getXstj().then((res) => {
-        if (res.status === 200) {
-          this.setXstj(res.data)
-        }
-      })
       bscrenn().then(res => {
         res = res.data
         if (res.state === ERR_OK) {
@@ -38,7 +33,7 @@ export default {
           // 设置左边栏
           this.setZslb(res.data.left)
           // 设置底部
-
+          this.setXstj(res.data.bottom)
           // 设置地图数据
           this.setMaps(res.data.map)
           this.$nextTick()

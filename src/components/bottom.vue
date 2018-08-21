@@ -66,7 +66,7 @@
                    :class="{'mr18':b>0}"
                    style="color: #0076b1"
                    v-for="(a,b) in item.list"
-                   :key="'c'+b">已办理</p>
+                   :key="'c'+b">{{a.name}}</p>
                 <!-- <p class="fr mr24"
                    style="color: #0076b1">未办理</p> -->
                 <div style="clear: both"></div>

@@ -104,4 +104,8 @@ export default {
 				margin-right: .15rem
 	.bg-liu
 		background url('/static/stageData/liuhai.png') no-repeat
+		position absolute
+		height 100%
+		width 100%
+		top 0
 </style>

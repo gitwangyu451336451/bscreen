@@ -56,7 +56,9 @@ export default {
     },
     setTime () {
       this.timer = setInterval(() => {
-        this.marker = !this.marker
+        if (this.getZslb.length > 4) {
+          this.marker = !this.marker
+        }
       }, 10000)
     },
     mouseout () {
