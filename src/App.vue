@@ -21,6 +21,10 @@ export default {
       let app = this.$refs.app
       let body = document.querySelector('body')
       body.style.transform = `scale(${x}, ${y})`
+      body.style.webkitTransform = `scale(${x}, ${y})`
+      body.style.msTransform = `scale(${x}, ${y})`
+      body.style.mozTransform = `scale(${x}, ${y})`
+      body.style.oTransform = `scale(${x}, ${y})`
     }
   },
   mounted () {
