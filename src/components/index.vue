@@ -13,7 +13,6 @@ import contain from './contain'
 import { ERR_OK } from 'api/config'
 import { mapActions } from 'vuex'
 import { bscrenn } from 'api/index' // 获取大屏所有数据接口
-import { getXstj } from 'api/bscreen'
 export default {
   components: { top, bottom, contain },
   methods: {
@@ -53,8 +52,8 @@ export default {
 <style lang='stylus' scoped>
 .contents {
   height: 100%;
-  min-width: 1024px;
-  min-height: 645px;
+  // min-width: 1024px;
+  // min-height: 645px;
   overflow-y: auto;
   background: url('/static/stageData/bg.png');
 

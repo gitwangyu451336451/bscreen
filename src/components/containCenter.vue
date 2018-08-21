@@ -133,7 +133,7 @@ export default {
           calculable: true,
           seriesIndex: [1],
           inRange: {
-            color: ['#04275d', '#f5b500', '#234c84', '#0d4295'] // 蓝绿
+            color: ['#04275d', '#f5b500', '#234c84', '#0d4295']
           }
         },
         geo: {
@@ -264,9 +264,9 @@ export default {
     height 16%
     position relative
     .register
-      left 0.45rem
-      top 0.06rem
-      width 370px
+      left 4%
+      top 5%
+      padding 0 15px
       height 100%
       text-align center
       position absolute
