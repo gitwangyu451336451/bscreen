@@ -18,7 +18,7 @@ export default {
       // 用于还原页面
       window.X = x
       window.Y = y
-      let app = this.$refs.app
+      // let app = this.$refs.app
       let body = document.querySelector('body')
       body.style.transform = `scale(${x}, ${y})`
       body.style.webkitTransform = `scale(${x}, ${y})`

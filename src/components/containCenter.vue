@@ -2,7 +2,7 @@
   <div class='contain-left' >
     <div class="top-wrapper">
       <div class="register">
-        <div class="register-num">{{maps.register.num}}</div>
+        <div class="register-num">{{maps.register.num}}%</div>
         <div class="register-text">报到率</div>
         <div class="register-bottom">
           <p>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="enroll">
-        <div class="enroll-num">{{maps.enroll.num}}</div>
+        <div class="enroll-num">{{maps.enroll.num}}%</div>
         <div class="enroll-text">录取率</div>
         <div class="enroll-bottom">
           <p>
@@ -30,8 +30,8 @@
     <div class="man-fem">
       <p class="man-title">男女比例</p>
       <div class="man-content">
-        <div class="man">{{maps.man}}</div>
-        <div class="fem">{{maps.fem}}</div>
+        <div class="man">{{maps.man}}%</div>
+        <div class="fem">{{maps.fem}}%</div>
       </div>
     </div>
   </div>
@@ -133,7 +133,7 @@ export default {
           calculable: true,
           seriesIndex: [1],
           inRange: {
-            color: ['#04275d', '#f5b500', '#234c84', '#0d4295']
+            color: ['#0c4295', '#224c85', '#f5b500', '#bd343e']
           }
         },
         geo: {

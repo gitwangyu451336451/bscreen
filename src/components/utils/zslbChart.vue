@@ -42,7 +42,7 @@ export default {
               data: [
                 {
                   value: 12345,
-                  name: ((100 - this.data.zb).toFixed()) + '%'
+                  name: ((100 - this.data.zb).toFixed(2)) + '%'
                 }
               ]
             },
