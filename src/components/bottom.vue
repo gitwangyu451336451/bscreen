@@ -10,7 +10,7 @@
     <Row>
       <Col span="7">
       <div class="cl-title">
-        <img src="/static/stageData/xs.png"> 学生统计
+        <img src="/static/stageData/xs.png"> 报到流程统计
       </div>
       </Col>
     </Row>
@@ -52,7 +52,7 @@
             <div></div>
           </a>
         </div>
-        <div id="demo2">
+        <div id="demo2" v-if="getXstj.length > 4">
           <a href="#"
              v-for="(item, i) in getXstj"
              :key="'item1'+i">

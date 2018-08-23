@@ -45,7 +45,7 @@ export default {
     setInterval(() => {
       console.log('定时器')
       this._bscrenn()
-    }, 300000)
+    }, 30000)
   }
 }
 </script>

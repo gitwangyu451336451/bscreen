@@ -31,7 +31,7 @@
       </vue-seamless-scroll>
     </div>
     <!-- 没得滚动条 -->
-    <ul class="college-enroll-ul" ref="lists" v-show="marker">
+    <ul class="college-enroll-ul" ref="list" v-show="marker">
       <li v-for="(item,i) in data" :key="i">
           <div class="zz-content">
               <table style="width:100%;">
@@ -68,16 +68,13 @@ export default {
         step: 0.5,
         limitMoveNum: this.data.length
       },
-      marker: true
+      marker: false
     }
   },
   components: {
     vueSeamlessScroll
   },
   props: ['data'],
-  mounted () {
-    this._isScroll()
-  },
   watch: {
     data (val) {
       this._isScroll()
@@ -87,8 +84,12 @@ export default {
     _isScroll () {
       this.$nextTick(() => {
         let wrapperHeight = this.$refs.container.clientHeight
-        let itemHeight = this.$refs.lists.clientHeight
-        if (itemHeight > wrapperHeight) {
+        let itemsHeight = this.$refs.lists.clientHeight
+        let itemHeight = this.$refs.list.clientHeight
+        console.log(wrapperHeight)
+        console.log('渲染后的高度1', itemsHeight)
+        console.log('渲染后的高度2', itemHeight)
+        if (itemsHeight > wrapperHeight || itemHeight > wrapperHeight) {
           this.marker = false
         } else {
           this.marker = true
