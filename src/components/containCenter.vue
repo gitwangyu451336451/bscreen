@@ -79,19 +79,19 @@ export default {
     },
     // 实例化地图数据
     initChart () {
-      let myChart = this.$echarts.init(document.getElementById('map'))
+      this.myChart = this.$echarts.init(document.getElementById('map'))
       // 开启加载中
-      myChart.showLoading()
+      this.myChart.showLoading()
       // 获取地图数据
       let mapFeatures = this.$echarts.getMap(this.mapName).geoJson.features
-      myChart.hideLoading()
+      this.myChart.hideLoading()
       mapFeatures.forEach(v => {
         // 地区名称
         var name = v.properties.name
         // 地区经纬度
         this.geoCoordMap[name] = v.properties.cp
       })
-      myChart.setOption(this.option)
+      this.myChart.setOption(this.option)
     }
   },
   mounted () {
@@ -247,6 +247,14 @@ export default {
       return option
     },
     ...mapGetters(['maps'])
+  },
+  watch: {
+    maps: function () {
+      // 更新数据后跟新地图
+      this.$nextTick(() => {
+        this.myChart.setOption(this.option)
+      })
+    }
   }
 }
 </script>
