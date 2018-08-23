@@ -5,20 +5,20 @@
       招生类别统计
     </div>
     <!-- 第一页数据 -->
-    <div class="cl-objs" v-show="first.length>0 && marker">
+    <div class="cl-objs" v-show="first.length>0">
       <div class="cl-obj" v-for="(item, i) in bl" :key="dom1[i]">
         <Row style="height: 100%;">
           <Col :span="item.s1" style="height: 100%;" v-if="first[i]">
             <zslbMes :data="first[i]"></zslbMes>
           </Col>
-          <Col :span="item.s2" style="height: 100%; position: relative;background:pink" v-if="first[i]">
+          <Col :span="item.s2" style="height: 100%; position: relative;" v-if="first[i]">
             <zslbChart :data="first[i]" :ids="dom1[i]" ref="zslbChart"></zslbChart>
           </Col>
         </Row>
       </div>
     </div>
     <!-- 第二页数据 -->
-    <div class="cl-objs" v-show="second.length>0 && !marker">
+    <!-- <div class="cl-objs" v-show="second.length>0 && !marker">
       <div class="cl-obj" v-for="(item, i) in bl" :key="dom1[i]">
         <Row style="height: 100%;">
           <Col :span="item.s1" style="height: 100%;" v-if="second[i]">
@@ -29,7 +29,7 @@
           </Col>
         </Row>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -46,10 +46,10 @@ export default {
         {s1: 11, s2: 13},
         {s1: 10, s2: 14},
         {s1: 13, s2: 11}],
-      marker: true,
+      marker: true, // 第一屏
       timer: '',
       dom1: ['item1', 'item2', 'item3', 'item4'],
-      dom2: ['item5', 'item6', 'item7', 'item8'],
+      first: []
     }
   },
   methods: {
@@ -58,36 +58,42 @@ export default {
     },
     setTime () {
       this.timer = setInterval(() => {
+        // 数据多才会发生切换
         if (this.getZslb.length > 4) {
           this.marker = !this.marker
-          // this.$refs.zslbChart.forEach(item => {
-          //   item.chart.setOption(item.option, true)
-          //   // item.chart.resize()
-          // })
+          if (this.marker) {
+            this.first = this.getZslb.slice(0, 4)
+          } else {
+            this.first = this.getZslb.slice(4, this.getZslb.length)
+          }
+        } else {
+          this.first = this.getZslb.slice(0, 4)
         }
+        this.$nextTick(() => {
+          this.$refs.zslbChart.forEach(item => {
+            item.chart.setOption(item.option)
+          })
+        })
       }, 10000)
     },
     mouseout () {
       this.setTime()
     }
   },
+  watch: {
+    // 数据发生变化后清除定时器
+    getZslb (val) {
+      clearInterval(this.timer)
+      this.first = this.getZslb.slice(0, 4)
+      this.$nextTick(() => {
+        this.$refs.zslbChart.forEach(item => {
+          item.chart.setOption(item.option)
+        })
+      })
+      this.setTime()
+    }
+  },
   computed: {
-    // 第一屏数据
-    first () {
-      if (this.getZslb.length > 4) {
-        return this.getZslb.slice(0, 4)
-      } else {
-        return this.getZslb
-      }
-    },
-    // 第二屏数据
-    second () {
-      if (this.getZslb.length > 4) {
-        return this.getZslb.slice(4, this.getZslb.length)
-      } else {
-        return []
-      }
-    },
     ...mapGetters(['getZslb'])
   },
   created () {

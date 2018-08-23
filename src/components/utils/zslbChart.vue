@@ -55,7 +55,7 @@ export default {
               data: [
                 {
                   value: 12345,
-                  name: (100-this.data.zb).toFixed(2) + '%'
+                  name: (100 - this.data.zb).toFixed(2) + '%'
                 }
               ]
             },
