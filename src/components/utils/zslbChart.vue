@@ -1,10 +1,23 @@
 <template>
-  <div class='zslbChart' ref='zslbChart'></div>
+  <div class='zslbChart' ref='zslbChart' :id="ids"></div>
 </template>
 
 <script type='text/ecmascript-6'>
 export default {
-  props: ['data'],
+  props: {
+    data: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
+    ids: {
+      type: String,
+      default: function () {
+        return ''
+      }
+    }
+  },
   data () {
     return {
       chart: ''
@@ -42,7 +55,7 @@ export default {
               data: [
                 {
                   value: 12345,
-                  name: ((100 - this.data.zb).toFixed(2)) + '%'
+                  name: (100-this.data.zb).toFixed(2) + '%'
                 }
               ]
             },
@@ -90,7 +103,13 @@ export default {
     }
   },
   mounted () {
-    this.chart = this.$echarts.init(this.$refs.zslbChart)
+    // this.chart = this.$echarts.init(this.$refs.zslbChart)
+    // let myChart = this.$echarts.init(document.getElementById('map'))
+    console.log(this.ids)
+    if (!this.ids) {
+      return
+    }
+    this.chart = this.$echarts.init(document.getElementById(this.ids))
     this.chart.setOption(this.option)
   }
 }

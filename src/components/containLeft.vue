@@ -5,27 +5,27 @@
       招生类别统计
     </div>
     <!-- 第一页数据 -->
-    <div class="cl-objs" v-if="first.length>0 && marker">
-      <div class="cl-obj" v-for="(item, i) in bl" :key="i">
+    <div class="cl-objs" v-show="first.length>0 && marker">
+      <div class="cl-obj" v-for="(item, i) in bl" :key="dom1[i]">
         <Row style="height: 100%;">
           <Col :span="item.s1" style="height: 100%;" v-if="first[i]">
             <zslbMes :data="first[i]"></zslbMes>
           </Col>
-          <Col :span="item.s2" style="height: 100%; position: relative" v-if="first[i]">
-            <zslbChart :data="first[i]"></zslbChart>
+          <Col :span="item.s2" style="height: 100%; position: relative;background:pink" v-if="first[i]">
+            <zslbChart :data="first[i]" :ids="dom1[i]" ref="zslbChart"></zslbChart>
           </Col>
         </Row>
       </div>
     </div>
     <!-- 第二页数据 -->
-    <div class="cl-objs" v-if="second.length>0 && !marker">
-      <div class="cl-obj" v-for="(item, i) in bl" :key="i">
+    <div class="cl-objs" v-show="second.length>0 && !marker">
+      <div class="cl-obj" v-for="(item, i) in bl" :key="dom1[i]">
         <Row style="height: 100%;">
           <Col :span="item.s1" style="height: 100%;" v-if="second[i]">
             <zslbMes :data="second[i]"></zslbMes>
           </Col>
-          <Col :span="item.s2" style="height: 100%; position: relative" v-if="second[i]">
-            <zslbChart :data="second[i]"></zslbChart>
+          <Col :span="item.s2" style="height: 100%; position: relative; background:pink" v-if="second[i]">
+            <zslbChart :data="second[i]" :ids="dom2[i]"  ref="zslbChart"></zslbChart>
           </Col>
         </Row>
       </div>
@@ -47,7 +47,9 @@ export default {
         {s1: 10, s2: 14},
         {s1: 13, s2: 11}],
       marker: true,
-      timer: ''
+      timer: '',
+      dom1: ['item1', 'item2', 'item3', 'item4'],
+      dom2: ['item5', 'item6', 'item7', 'item8'],
     }
   },
   methods: {
@@ -58,6 +60,10 @@ export default {
       this.timer = setInterval(() => {
         if (this.getZslb.length > 4) {
           this.marker = !this.marker
+          // this.$refs.zslbChart.forEach(item => {
+          //   item.chart.setOption(item.option, true)
+          //   // item.chart.resize()
+          // })
         }
       }, 10000)
     },
@@ -77,7 +83,7 @@ export default {
     // 第二屏数据
     second () {
       if (this.getZslb.length > 4) {
-        return this.getZslb.slice(3, this.getZslb.length - 1)
+        return this.getZslb.slice(4, this.getZslb.length)
       } else {
         return []
       }
