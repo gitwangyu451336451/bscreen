@@ -1,35 +1,37 @@
 <template>
  <div class="progress" ref="container">
     <!-- 有滚动条 -->
-    <vue-seamless-scroll v-if="!marker" :data="data" class="progress-container" :class-option="classOption">
-      <ul class="college-enroll-ul" ref="lists">
+    <div v-show="!marker">
+      <vue-seamless-scroll :data="data" class="progress-container" :class-option="classOption">
+        <ul class="college-enroll-ul" ref="lists">
           <li v-for="(item,i) in data" :key="i">
-              <div class="zz-content">
-                  <table style="width:100%;">
-                      <tbody>
-                          <tr>
-                              <td class="college-td">
-                                  <p class="college-name">{{item.college}}</p>
-                              </td>
-                              <td class="yq-td" :class="{'yq-td-last': data.length!==(i+1)}">
-                                  <div class="yq"></div>
-                              </td>
-                              <td class="info-td">
-                                  <div class="enroll-info">
-                                      <p class="enroll-bdrs">{{item.bdrs}}/{{item.lqrs}}人</p>
-                                      <div class="enroll-zz" :style="{width: item.bdl*0.65+'%'}"></div>
-                                      <p class="enroll-bdl">{{item.bdl}}%</p>
-                                  </div>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
+            <div class="zz-content">
+              <table style="width:100%;">
+                <tbody>
+                  <tr>
+                    <td class="college-td">
+                      <p class="college-name">{{item.college}}</p>
+                    </td>
+                    <td class="yq-td" :class="{'yq-td-last': data.length!==(i+1)}">
+                      <div class="yq"></div>
+                    </td>
+                    <td class="info-td">
+                      <div class="enroll-info">
+                        <p class="enroll-bdrs">{{item.bdrs}}/{{item.lqrs}}人</p>
+                        <div class="enroll-zz" :style="{width: item.bdl*0.65+'%'}"></div>
+                        <p class="enroll-bdl">{{item.bdl}}%</p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </li>
-      </ul>
-    </vue-seamless-scroll>
+        </ul>
+      </vue-seamless-scroll>
+    </div>
     <!-- 没得滚动条 -->
-    <ul class="college-enroll-ul" ref="lists" v-if="marker">
+    <ul class="college-enroll-ul" ref="lists" v-show="marker">
       <li v-for="(item,i) in data" :key="i">
           <div class="zz-content">
               <table style="width:100%;">
@@ -74,12 +76,25 @@ export default {
   },
   props: ['data'],
   mounted () {
-    let wrapperHeight = this.$refs.container.clientHeight
-    let itemHeight = this.$refs.lists.clientHeight
-    if (itemHeight > wrapperHeight) {
-      this.marker = false
-    } else {
-      this.marker = true
+    this._isScroll()
+  },
+  watch: {
+    data (val) {
+      this._isScroll()
+    }
+  },
+  methods: {
+    _isScroll () {
+      this.$nextTick(() => {
+        let wrapperHeight = this.$refs.container.clientHeight
+        let itemHeight = this.$refs.lists.clientHeight
+        if (itemHeight > wrapperHeight) {
+          this.marker = false
+        } else {
+          this.marker = true
+        }
+        console.log(this.marker)
+      })
     }
   }
 }

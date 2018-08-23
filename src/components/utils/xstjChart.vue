@@ -6,6 +6,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+const COLOR = ['#19ccff', '#34cbdd', '#3263e0', '#197ca6']
 export default {
   props: ['data'],
   data () {
@@ -21,7 +22,7 @@ export default {
           selected: false,
           itemStyle: {
             normal: {
-              color: i === 0 ? '#1897d6' : i === 1 ? '#09c4fb' : '#adadad'
+              color: COLOR[i]
             }
           }
         }

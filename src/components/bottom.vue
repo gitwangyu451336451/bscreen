@@ -28,7 +28,7 @@
               <div>
                 <p class="fr"
                    :class="{'mr18':b>0}"
-                   style="color: #0076b1"
+                   :style="{color: COLOR[b]}"
                    v-for="(a,b) in item.list"
                    :key="'a'+b">{{a.name}}</p>
                 <!-- <p class="fr mr24"
@@ -64,7 +64,7 @@
               <div>
                 <p class="fr"
                    :class="{'mr18':b>0}"
-                   style="color: #0076b1"
+                   :style="{color: COLOR[b]}"
                    v-for="(a,b) in item.list"
                    :key="'c'+b">{{a.name}}</p>
                 <!-- <p class="fr mr24"
@@ -98,7 +98,9 @@ import chart from './utils/xstjChart'
 import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {}
+    return {
+      COLOR: ['#19ccff', '#34cbdd', '#3263e0', '#197ca6']
+    }
   },
   computed: {
     ...mapGetters(['getXstj'])

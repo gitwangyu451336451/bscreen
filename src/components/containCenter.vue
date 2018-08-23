@@ -72,7 +72,6 @@ export default {
     // 获取对象中最大值
     _setMax (data) {
       let arr = []
-      console.log(data)
       data.forEach(item => {
         arr.push(item.value)
       })

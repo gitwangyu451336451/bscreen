@@ -16,21 +16,6 @@ import progress from './utils/progress'
 import { mapGetters } from 'vuex'
 export default {
   components: {'v-progress': progress},
-  props: {},
-  data () {
-    return {
-      dataProgress: [
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'},
-        {'name': '信息工程学院'}]
-    }
-  },
-  watch: {},
   computed: {
     ...mapGetters(['getCollogeData'])
   },
