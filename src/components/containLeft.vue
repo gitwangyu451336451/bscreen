@@ -8,10 +8,10 @@
     <div class="cl-objs" v-if="first.length>0 && marker">
       <div class="cl-obj" v-for="(item, i) in bl" :key="i">
         <Row style="height: 100%;">
-          <Col :span="item.s1" style="height: 100%;">
+          <Col :span="item.s1" style="height: 100%;" v-if="first[i]">
             <zslbMes :data="first[i]"></zslbMes>
           </Col>
-          <Col :span="item.s2" style="height: 100%; position: relative">
+          <Col :span="item.s2" style="height: 100%; position: relative" v-if="first[i]">
             <zslbChart :data="first[i]"></zslbChart>
           </Col>
         </Row>
@@ -19,12 +19,12 @@
     </div>
     <!-- 第二页数据 -->
     <div class="cl-objs" v-if="second.length>0 && !marker">
-      <div class="cl-obj" v-for="(item, i) in second" :key="i">
+      <div class="cl-obj" v-for="(item, i) in bl" :key="i">
         <Row style="height: 100%;">
-          <Col :span="bl[i].s1" style="height: 100%;">
+          <Col :span="item.s1" style="height: 100%;" v-if="second[i]">
             <zslbMes :data="second[i]"></zslbMes>
           </Col>
-          <Col :span="bl[i].s2" style="height: 100%; position: relative">
+          <Col :span="item.s2" style="height: 100%; position: relative" v-if="second[i]">
             <zslbChart :data="second[i]"></zslbChart>
           </Col>
         </Row>
