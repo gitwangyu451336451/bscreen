@@ -34,7 +34,7 @@ export default {
 <style lang='stylus' scoped>
 .contain
     // height: calc(100% - 2.17rem)
-    height: 5.54rem
+    height: 5.46rem
     width: 100%
     padding: .25rem .35rem
 </style>

@@ -20,12 +20,12 @@
           <a href="#"
              v-for="(item, i) in getXstj"
              :key="'item'+i">
-            <div>
+            <div style="font-size: 14px">
               <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
-              <div>
+              <div style="font-size: 14px">
                 <p class="fr"
                    :class="{'mr18':b>0}"
                    :style="{color: COLOR[b]}"
@@ -35,7 +35,7 @@
                    style="color: #0076b1">未办理</p> -->
                 <div style="clear: both"></div>
               </div>
-              <table>
+              <table style="font-size: 12px">
                 <tr>
                   <th>状态</th>
                   <th>人数</th>
@@ -56,12 +56,12 @@
           <a href="#"
              v-for="(item, i) in getXstj"
              :key="'item1'+i">
-            <div>
+            <div style="font-size: 14px">
               <p>{{item.names}}</p>
               <chart :data="item.list"></chart>
             </div>
             <div>
-              <div>
+              <div style="font-size: 14px">
                 <p class="fr"
                    :class="{'mr18':b>0}"
                    :style="{color: COLOR[b]}"
@@ -71,7 +71,7 @@
                    style="color: #0076b1">未办理</p> -->
                 <div style="clear: both"></div>
               </div>
-              <table>
+              <table style="font-size: 12px">
                 <tr>
                   <th>状态</th>
                   <th>人数</th>
@@ -164,7 +164,7 @@ export default {
 <style scoped lang="stylus">
 .bottom {
   position: relative;
-  height: 1.72rem;
+  height: 1.8rem;
   margin: 0 0.35rem;
 
   .cl-title {
@@ -309,7 +309,7 @@ export default {
         left: -0.14rem;
         top: 50%;
         transform: translateY(-50%);
-        background: #1897d6;
+        background: #19ccff;
       }
 
       >div>p:nth-child(2):before {
@@ -321,7 +321,7 @@ export default {
         left: -0.14rem;
         top: 50%;
         transform: translateY(-50%);
-        background: #09c4fb;
+        background: #34cbdd;
       }
 
       >div>p:nth-child(3):before {
@@ -333,7 +333,18 @@ export default {
         left: -0.14rem;
         top: 50%;
         transform: translateY(-50%);
-        background: #adadad;
+        background: #3263e0;
+      }
+      >div>p:nth-child(4):before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0.12rem;
+        height: 0.12rem;
+        left: -0.14rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #197ca6;
       }
     }
   }
